@@ -11,7 +11,7 @@ Disallow: /assets/scripts/
 Disallow: *.js$
 
 # Sitemap
-Sitemap: https://jorgeherrera.dev/sitemap.xml
+Sitemap: https://th3herrera.github.io/sitemap.xml
 
 # Crawl-delay para bots más agresivos
 User-agent: Bingbot

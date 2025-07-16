@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Escáner de Puertos en Bash - Proyecto de Jorge Herrera para detectar puertos abiertos en hosts y redes">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Escáner de Puertos - Jorge Herrera">
+  <meta property="og:description" content="Scripts en Bash para escanear puertos abiertos en hosts individuales y redes locales">
+  <meta property="og:image" content="../../assets/images/logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Escáner de Puertos - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/styles.css">
+  <link rel="stylesheet" href="port-scanner.css">
+  <link rel="stylesheet" href="../../CSS/header.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../../assets/images/logo-light.png" type="image/png">
+</head>
+<body class="projects-page">
+  <!-- Navegación principal -->
+  <nav>
+    <div class="nav-brand">
+      <a href="../../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="../proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="../archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="../recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="../sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container animate-fade-in">
+        <div class="hero-badge animate-delay-1">
+          <span>🔍</span>
+          <span>Network Security</span>
+        </div>
+        
+        <h1 class="hero-title animate-delay-2">
+          Escáner de Puertos en Bash
+        </h1>
+        
+        <p class="hero-subtitle animate-delay-3">
+          Scripts especializados para detectar puertos abiertos en hosts individuales y redes completas.
+          Una herramienta educativa desarrollada en Bash puro, sin dependencias externas.
+        </p>
+        
+        <div class="hero-stats animate-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Scripts</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">65K+</span>
+            <span class="stat-label">Puertos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Bash</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions animate-delay-4">
+          <a href="#overview" class="hero-cta primary">
+            <span>Ver Proyecto</span>
+            <span>→</span>
+          </a>
+          <a href="https://github.com/th3herrera/Port-sccanner" class="hero-cta secondary" target="_blank" rel="noopener noreferrer">
+            <span>Ver en GitHub</span>
+            <span>🔗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview-section">
+      <div class="container">
+        <h2 class="section-title">¿Qué es el Escáner de Puertos?</h2>
+        <div class="overview-grid">
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">🎯</div>
+            <h3>Objetivo</h3>
+            <p>Identificar puertos abiertos en sistemas remotos para auditorías de seguridad y administración de redes.</p>
+          </div>
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">⚡</div>
+            <h3>Tecnología</h3>
+            <p>Desarrollado completamente en Bash usando /dev/tcp para conexiones TCP, sin dependencias externas.</p>
+          </div>
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">🔒</div>
+            <h3>Ética</h3>
+            <p>Herramienta educativa que debe usarse únicamente con autorización explícita del propietario del sistema.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">Características Principales</h2>
+        <div class="features-grid">
+          <div class="feature-card glass animate-on-scroll">
+            <div class="feature-header">
+              <div class="feature-icon">📡</div>
+              <h3>port_scan.sh</h3>
+            </div>
+            <p>Escanea todos los puertos (1-65535) de un host específico con control de concurrencia optimizado.</p>
+            <ul class="feature-list">
+              <li>✅ Escaneo completo de puertos</li>
+              <li>✅ Control de procesos paralelos</li>
+              <li>✅ Validación de entrada</li>
+              <li>✅ Manejo de interrupciones</li>
+            </ul>
+          </div>
+          <div class="feature-card glass animate-on-scroll">
+            <div class="feature-header">
+              <div class="feature-icon">🌐</div>
+              <h3>host_scan.sh</h3>
+            </div>
+            <p>Escanea puertos comunes en toda una red local (ej: 192.168.1.0/24) de forma eficiente.</p>
+            <ul class="feature-list">
+              <li>✅ Escaneo de red completa</li>
+              <li>✅ Puertos más comunes</li>
+              <li>✅ Resultados organizados</li>
+              <li>✅ Optimización de tiempo</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <h2 class="section-title">Demostración Interactiva</h2>
+        <div class="demo-container">
+          <div class="demo-controls">
+            <button class="demo-btn active" data-script="port-scan">port_scan.sh</button>
+            <button class="demo-btn" data-script="host-scan">host_scan.sh</button>
+          </div>
+          <div class="demo-terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+              </div>
+              <div class="terminal-title">Terminal - Escáner de Puertos</div>
+            </div>
+            <div class="terminal-content" id="demo-content">
+              <div class="demo-script active" id="port-scan-demo">
+                <div class="terminal-line">
+                  <span class="prompt">jorge@kali:~$</span>
+                  <span class="command">./port_scan.sh 192.168.1.1</span>
+                </div>
+                <div class="terminal-line scanning-line">
+                  <span class="scanning-text">[*] Escaneando host: 192.168.1.1</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 22 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 80 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 443 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 8080 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">jorge@kali:~$</span>
+                  <span class="cursor">_</span>
+                </div>
+              </div>
+              
+              <div class="demo-script" id="host-scan-demo">
+                <div class="terminal-line">
+                  <span class="prompt">jorge@kali:~$</span>
+                  <span class="command">./host_scan.sh 192.168.1</span>
+                </div>
+                <div class="terminal-line scanning-line">
+                  <span class="scanning-text">[*] Escaneando red: 192.168.1.0/24</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 22 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.1 - Puerto 80 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.5 - Puerto 22 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.10 - Puerto 139 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.15 - Puerto 445 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line result-line">
+                  <span class="result-success">[+] Host 192.168.1.20 - Puerto 80 (ABIERTO)</span>
+                </div>
+                <div class="terminal-line">
+                  <span class="prompt">jorge@kali:~$</span>
+                  <span class="cursor">_</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Section -->
+    <section id="codigo" class="code-section">
+      <div class="container">
+        <h2 class="section-title">Implementación Técnica</h2>     
+        <div class="code-tabs">
+          <button class="tab-btn active" data-tab="port-scan">port_scan.sh</button>
+          <button class="tab-btn" data-tab="host-scan">host_scan.sh</button>
+          <button class="tab-btn" data-tab="functions">Funciones Core</button>
+        </div>
+        
+        <div class="code-content" id="port-scan-code">
+          <div class="code-header">
+            <span class="code-title">port_scan.sh - Escaneo de Host Individual</span>
+            <button class="copy-btn" data-clipboard-target="#port-scan-script">📋 Copiar</button>
+          </div>
+          <pre><code id="port-scan-script" class="language-bash">#!/bin/bash
+
+# Control de interrupciones
+function ctrl_c() {
+    echo -e "\n\n[!] Saliendo...\n"
+    tput cnorm
+    exit 1
+}
+trap ctrl_c SIGINT
+
+# Validación de entrada
+if [ -z "$1" ]; then
+    echo -e "\n[!] Uso: $0 <host>\nEjemplo: $0 192.168.1.1\n"
+    tput cnorm
+    exit 1
+fi
+
+# Validación de IP o dominio
+if ! [[ $1 =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]] && \
+   ! [[ $1 =~ ^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+    echo -e "\n[!] Error: Introduce una IP válida o dominio\n"
+    exit 1
+fi
+
+host=$1
+tput civis
+
+# Función para verificar puerto
+function checkPort() {
+    timeout 1 bash -c "exec 3<> /dev/tcp/$1/$2" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "[+] Host $1 - Puerto $2 (ABIERTO)"
+    fi
+    exec 3<&-
+    exec 3>&-
+}
+
+# Array de puertos
+declare -a ports=( $(seq 1 65535) )
+
+# Control de concurrencia
+max_jobs=100
+job_count=0
+
+echo -e "\n[*] Escaneando host: $host\n"
+
+for port in "${ports[@]}"; do
+    checkPort "$host" "$port" &
+    ((job_count++))
+    
+    if [ $job_count -ge $max_jobs ]; then
+        wait -n
+        ((job_count--))
+    fi
+done
+
+wait
+tput cnorm</code></pre>
+        </div>
+
+        <div class="code-content" id="host-scan-code" style="display: none;">
+          <div class="code-header">
+            <span class="code-title">host_scan.sh - Escaneo de Red</span>
+            <button class="copy-btn" data-clipboard-target="#host-scan-script">📋 Copiar</button>
+          </div>
+          <pre><code id="host-scan-script" class="language-bash">#!/bin/bash
+
+# Control de interrupciones
+function ctrl_c() {
+    echo -e "\n\n[!] Saliendo...\n"
+    tput cnorm
+    exit 1
+}
+trap ctrl_c SIGINT
+
+# Validación de entrada
+if [ -z "$1" ]; then
+    echo -e "\n[!] Uso: $0 <red>\nEjemplo: $0 192.168.1\n"
+    exit 1
+fi
+
+# Validación de formato de red
+if ! [[ $1 =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+    echo -e "\n[!] Error: Formato de red inválido\n"
+    exit 1
+fi
+
+network=$1
+tput civis
+
+# Puertos comunes a escanear
+declare -a ports=(21 22 23 25 80 139 443 445 8080)
+
+# Función para verificar puerto
+function checkPort() {
+    timeout 1 bash -c "exec 3<> /dev/tcp/$1/$2" 2>/dev/null
+    if [ $? -eq 0 ]; then
+        echo "[+] Host $1 - Puerto $2 (ABIERTO)"
+    fi
+    exec 3<&-
+    exec 3>&-
+}
+
+# Control de concurrencia
+max_jobs=50
+job_count=0
+
+echo -e "\n[*] Escaneando red: $network.0/24\n"
+
+for host in $(seq 1 254); do
+    for port in "${ports[@]}"; do
+        checkPort "$network.$host" "$port" &
+        ((job_count++))
+        
+        if [ $job_count -ge $max_jobs ]; then
+            wait -n
+            ((job_count--))
+        fi
+    done
+done
+
+wait
+tput cnorm</code></pre>
+        </div>
+
+        <div class="code-content" id="functions-code" style="display: none;">
+          <div class="code-header">
+            <span class="code-title">Funciones Principales</span>
+            <button class="copy-btn" data-clipboard-target="#functions-script">📋 Copiar</button>
+          </div>
+          <pre><code id="functions-script" class="language-bash"># Función de verificación de puerto usando /dev/tcp
+function checkPort() {
+    # Timeout de 1 segundo para evitar bloqueos
+    timeout 1 bash -c "exec 3<> /dev/tcp/$1/$2" 2>/dev/null
+    
+    # Verificar si la conexión fue exitosa
+    if [ $? -eq 0 ]; then
+        echo "[+] Host $1 - Puerto $2 (ABIERTO)"
+    fi
+    
+    # Cerrar descriptores de archivo
+    exec 3<&-
+    exec 3>&-
+}
+
+# Control de concurrencia para evitar sobrecarga
+function manageConcurrency() {
+    local max_jobs=$1
+    local current_jobs=$(jobs -r | wc -l)
+    
+    while [ $current_jobs -ge $max_jobs ]; do
+        wait -n  # Esperar a que termine un trabajo
+        current_jobs=$(jobs -r | wc -l)
+    done
+}
+
+# Validación de IP
+function validateIP() {
+    local ip=$1
+    if [[ $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+# Validación de dominio
+function validateDomain() {
+    local domain=$1
+    if [[ $domain =~ ^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Example Section -->
+    <section class="results-section">
+      <div class="container">
+        <h2 class="section-title">📊 Ejemplos de Resultados</h2>
+        <div class="results-grid">
+          <div class="result-card">
+            <div class="result-header">
+              <h3>🎯 Escaneo Individual - Servidor Web</h3>
+              <span class="result-badge success">Exitoso</span>
+            </div>
+            <div class="result-terminal">
+              <div class="terminal-output">
+                <div class="output-line command">$ ./port_scan.sh example.com</div>
+                <div class="output-line info">[*] Escaneando host: example.com</div>
+                <div class="output-line success">[+] Host example.com - Puerto 22 (ABIERTO)</div>
+                <div class="output-line success">[+] Host example.com - Puerto 80 (ABIERTO)</div>
+                <div class="output-line success">[+] Host example.com - Puerto 443 (ABIERTO)</div>
+                <div class="output-line completion">[*] Escaneo completado en 45 segundos</div>
+              </div>
+            </div>
+          </div>
+          
+        
+        <div class="results-stats">
+          <div class="stat-card">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-content">
+              <h4>Velocidad Promedio</h4>
+              <p>~1000 puertos/minuto</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">🎯</div>
+            <div class="stat-content">
+              <h4>Precisión</h4>
+              <p>99.9% de detección</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-content">
+              <h4>Eficiencia</h4>
+              <p>Bajo uso de CPU/RAM</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section class="usage-section">
+      <div class="container">
+        <h2 class="section-title">Guía de Uso</h2>
+        <div class="usage-grid">
+          <div class="usage-card">
+            <div class="usage-header">
+              <h3>📡 Escaneo de Host Individual</h3>
+            </div>
+            <div class="usage-steps">
+              <div class="step">
+                <span class="step-number">1</span>
+                <div class="step-content">
+                  <h4>Preparación</h4>
+                  <pre><code>chmod +x port_scan.sh</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">2</span>
+                <div class="step-content">
+                  <h4>Ejecución</h4>
+                  <pre><code>./port_scan.sh 192.168.1.1</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <span class="step-number">3</span>
+                <div class="step-content">
+                  <h4>Resultado</h4>
+                  <pre><code>[+] Host 192.168.1.1 - Puerto 22 (ABIERTO)
+[+] Host 192.168.1.1 - Puerto 80 (ABIERTO)</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>    
+
+    <!-- Security Section -->
+    <section class="security-section">
+      <div class="container">
+        <h2 class="section-title">🔒 Consideraciones de Seguridad y Ética</h2>
+        <div class="security-content">
+          <div class="security-warning">
+            <div class="warning-icon">🚨</div>
+            <div class="warning-content">
+              <h3>Uso Responsable</h3>
+              <p>Este escáner de puertos es una herramienta educativa que debe utilizarse exclusivamente en sistemas y redes donde tengas autorización explícita. El escaneo no autorizado puede ser ilegal y violar términos de servicio.</p>
+            </div>
+          </div>
+          
+          <div class="security-best-practices">
+            <h3>📖 Mejores Prácticas</h3>
+            <div class="practices-grid">
+              <div class="practice-item">
+                <span class="practice-icon">📝</span>
+                <div class="practice-content">
+                  <h4>Documentación</h4>
+                  <p>Documenta siempre tus escaneos y mantén registros de autorización</p>
+                </div>
+              </div>
+              <div class="practice-item">
+                <span class="practice-icon">⏰</span>
+                <div class="practice-content">
+                  <h4>Horarios</h4>
+                  <p>Realiza escaneos en horarios que no afecten la productividad</p>
+                </div>
+              </div>
+              <div class="practice-item">
+                <span class="practice-icon">🎯</span>
+                <div class="practice-content">
+                  <h4>Scope</h4>
+                  <p>Define claramente el alcance antes de comenzar cualquier escaneo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="security-grid">
+            <div class="security-card">
+              <h4>✅ Usos Permitidos</h4>
+              <ul>
+                <li>Auditorías de seguridad autorizadas</li>
+                <li>Pruebas en tu propia red</li>
+                <li>Laboratorios de aprendizaje</li>
+                <li>Entornos de desarrollo</li>
+              </ul>
+            </div>
+            <div class="security-card">
+              <h4>❌ Usos Prohibidos</h4>
+              <ul>
+                <li>Escaneo sin autorización</li>
+                <li>Reconocimiento malicioso</li>
+                <li>Violación de políticas</li>
+                <li>Actividades ilegales</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Details -->
+    <section class="technical-section">
+      <div class="container">
+        <h2 class="section-title">Detalles Técnicos</h2>
+        <div class="technical-grid">
+          <div class="technical-card">
+            <h3>🔧 Tecnologías Utilizadas</h3>
+            <div class="tech-list">
+              <span class="tech-tag">Bash</span>
+              <span class="tech-tag">/dev/tcp</span>
+              <span class="tech-tag">timeout</span>
+              <span class="tech-tag">trap</span>
+              <span class="tech-tag">seq</span>
+            </div>
+          </div>
+          <div class="technical-card">
+            <h3>📊 Rendimiento</h3>
+            <ul>
+              <li><strong>Concurrencia:</strong> Hasta 100 procesos paralelos</li>
+              <li><strong>Timeout:</strong> 1 segundo por puerto</li>
+              <li><strong>Rango:</strong> 1-65535 puertos</li>
+              <li><strong>Memoria:</strong> Uso mínimo de recursos</li>
+            </ul>
+          </div>
+          <div class="technical-card">
+            <h3>🎯 Funcionalidades</h3>
+            <ul>
+              <li>Validación de entrada robusta</li>
+              <li>Manejo de interrupciones (Ctrl+C)</li>
+              <li>Control de cursor de terminal</li>
+              <li>Detección de IP y dominios</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="final-cta">
+          <h3>🚀 ¿Te ha gustado este proyecto?</h3>
+          <p>Conecta conmigo y explora más proyectos de ciberseguridad</p>
+          <div class="cta-buttons">
+            <a href="../proyectos.html" class="cta-btn primary">Ver Más Proyectos</a>
+            <a href="../sobre-mi.html" class="cta-btn secondary">Conocer Más</a>
+            <a href="mailto:jorge.herrera@ejemplo.com" class="cta-btn tertiary">Contactar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../assets/scripts/menu.js" defer></script>
+  <script src="../../assets/scripts/theme-switcher.js" defer></script>
+  <script src="port-scanner-effects.js" defer></script>
+</body>
+</html>

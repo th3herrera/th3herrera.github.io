@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Explora los proyectos de Jorge Herrera en ciberseguridad, desarrollo técnico y diseño de videojuegos.">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Proyectos - Jorge Herrera">
+  <meta property="og:description" content="Explora los proyectos de Jorge Herrera en ciberseguridad, desarrollo técnico y diseño de videojuegos.">
+  <meta property="og:image" content="../assets/images/logo.svg">
+  <meta property="og:url" content="https://tudominio.com/pages/proyectos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Proyectos - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/styles.css">
+  <link rel="stylesheet" href="proyectos.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../assets/images/logo-light.png" type="image/png">
+  <link rel="preload" href="../assets/images/logo.svg" as="image">
+  <link rel="preload" href="../assets/images/logo-dark.svg" as="image">
+</head>
+<body class="projects-page">
+  <nav>
+    <div class="nav-brand">
+      <a href="../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="proyectos.html" class="nav-link active" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-badge">
+          <span>💼</span>
+          <span>Portfolio de Proyectos</span>
+        </div>
+        
+        <h1 class="hero-title">Mis Proyectos</h1>
+        
+        <p class="hero-subtitle">
+          Explora mi colección de proyectos en ciberseguridad, desarrollo técnico y diseño creativo. 
+          Cada proyecto representa un paso en mi evolución profesional y técnica.
+        </p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">7+</span>
+            <span class="stat-label">Proyectos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Tecnologías</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Open Source</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions">
+          <a href="#projects" class="hero-cta primary">
+            <span>Ver Proyectos</span>
+            <span>→</span>
+          </a>
+          <a href="archivo.html" class="hero-cta secondary">
+            <span>Ver Archivo</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Principal de Proyectos -->
+    <section id="projects" class="projects-section">
+      <div class="section-content">
+        <div class="section-header">
+          <h2 class="section-title">Portfolio Técnico</h2>
+          <p class="section-subtitle">
+            Proyectos clasificados por tecnología y área de especialización
+          </p>
+        </div>
+        
+        <div class="tag-cloud" role="group" aria-label="Filtrar proyectos por etiquetas">
+          <span class="tag active" data-filter="all">Todos</span>
+          <span class="tag" data-filter="ciberseguridad">Ciberseguridad</span>
+          <span class="tag" data-filter="python">Python</span>
+          <span class="tag" data-filter="sql">SQL</span>
+          <span class="tag" data-filter="bash">Bash</span>
+          <span class="tag" data-filter="linux">Linux</span>
+          <span class="tag" data-filter="web">Web</span>
+          <span class="tag" data-filter="videojuego">Videojuegos</span>
+        </div>
+        
+        <div class="project-grid">
+          <div class="project-card" data-tags="ciberseguridad linux bash">
+            <div class="project-badge">Destacado</div>
+            <h3>🔐 Guía de Niveles Bandit</h3>
+            <p>Documentación completa del challenge Bandit de OverTheWire. Tutorial paso a paso que cubre 34 niveles progresivos de seguridad Linux, desde comandos básicos hasta técnicas avanzadas de penetration testing.</p>
+            <div class="tech-tags">
+              <span>Ciberseguridad</span>
+              <span>Linux</span>
+              <span>Bash</span>
+              <span>CTF</span>
+            </div>
+            <a href="Proyectos/bandit.html" class="cta-button" aria-label="Ver proyecto de Bandit">
+              📖 Ver Documentación
+            </a>
+          </div>
+
+          <div class="project-card" data-tags="web html css">
+            <div class="project-badge">Destacado</div>
+            <h3>🌐 Mi Página Web</h3>
+            <p>Documentación completa del proceso de creación de este portfolio web. Desde el diseño conceptual hasta la implementación final, incluyendo decisiones técnicas, arquitectura y mejores prácticas.</p>
+            <div class="tech-tags">
+              <span>HTML</span>
+              <span>CSS</span>
+              <span>JavaScript</span>
+              <span>Web Design</span>
+            </div>
+            <a href="Proyectos/mi-pagina-web.html" class="cta-button" aria-label="Ver proyecto Mi Página Web">
+              📖 Ver Documentación
+            </a>
+          </div>
+          
+          <div class="project-card" data-tags="ciberseguridad bash linux">
+            <h3>🔍 Escáner de Puertos en Bash</h3>
+            <p>Herramienta educativa para detectar puertos abiertos en hosts individuales y redes completas. Desarrollada completamente en Bash usando /dev/tcp, sin dependencias externas.</p>
+            <div class="tech-tags">
+              <span>Ciberseguridad</span>
+              <span>Bash</span>
+              <span>Networking</span>
+              <span>Security Tools</span>
+            </div>
+            <a href="Proyectos/port-scanner.html" class="cta-button" aria-label="Ver proyecto de Escáner de Puertos">
+              🛠️ Ver Herramienta
+            </a>
+          </div>
+          
+          <div class="project-card" data-tags="ciberseguridad python sql">
+            <h3>🛡️ Filtros SQL Seguros</h3>
+            <p>Sistema robusto de protección contra inyecciones SQL para aplicaciones web. Incluye validación de entrada, sanitización de consultas y logging de seguridad.</p>
+            <div class="tech-tags">
+              <span>Ciberseguridad</span>
+              <span>SQL</span>
+              <span>Python</span>
+              <span>Web Security</span>
+            </div>
+            <a href="Proyectos/sql-filters.html" class="cta-button" aria-label="Ver proyecto de Filtros SQL Seguros">
+              🔒 Ver Proyecto
+            </a>
+          </div>
+          
+          <div class="project-card" data-tags="linux bash">
+            <h3>⚙️ Gestor de Permisos Linux</h3>
+            <p>Conjunto de scripts especializados para automatización y auditoría de permisos en entornos Linux empresariales. Incluye detección de configuraciones inseguras y reportes de compliance.</p>
+            <div class="tech-tags">
+              <span>Linux</span>
+              <span>Bash</span>
+              <span>System Admin</span>
+              <span>Automation</span>
+            </div>
+            <a href="Proyectos/linux-permissions.html" class="cta-button" aria-label="Ver proyecto de Gestor de Permisos Linux">
+              🔧 Ver Scripts
+            </a>
+          </div>
+          
+          <div class="project-card" data-tags="videojuego python">
+            <div class="project-badge">En Desarrollo</div>
+            <h3>🎮 Videojuego Personalizado</h3>
+            <p>Desarrollo de un videojuego completo en Python usando Pygame. Incluye diseño de mecánicas innovadoras, gráficos personalizados y sistema de física básica con arquitectura modular.</p>
+            <div class="tech-tags">
+              <span>Python</span>
+              <span>Pygame</span>
+              <span>Game Design</span>
+              <span>Graphics</span>
+            </div>
+            <a href="#" class="cta-button" aria-label="Proyecto en desarrollo - Videojuego">
+              ⏳ En Progreso
+            </a>
+          </div>
+          
+          <div class="project-card" data-tags="ciberseguridad python">
+            <div class="project-badge">En Desarrollo</div>
+            <h3>🚀 Herramienta de Seguridad Avanzada</h3>
+            <p>Desarrollo de una herramienta especializada en Python para análisis de seguridad y automatización de procesos de ciberseguridad. Actualmente en fase de conceptualización y diseño arquitectónico.</p>
+            <div class="tech-tags">
+              <span>Python</span>
+              <span>Ciberseguridad</span>
+              <span>Security Tools</span>
+              <span>Automation</span>
+            </div>
+            <a href="#" class="cta-button" aria-label="Proyecto en desarrollo - Herramienta de Seguridad">
+              🔬 En Investigación
+            </a>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <p>¿Interesado en colaborar o conocer más detalles sobre algún proyecto?</p>
+          <a href="archivo.html" class="cta-button" aria-label="Explorar el archivo completo de proyectos">
+            📚 Ver Archivo Completo
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../assets/scripts/menu.js" defer></script>
+  <script src="../assets/scripts/theme-switcher.js" defer></script>
+  <script src="../assets/scripts/scroll-effects.js" defer></script>
+  <script>
+    // Filtro de proyectos por etiquetas con animaciones suaves
+    document.addEventListener('DOMContentLoaded', function() {
+      const tags = document.querySelectorAll('.tag');
+      const cards = document.querySelectorAll('.project-card');
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter').toLowerCase();
+          
+          // Actualizar tags activos
+          tags.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Animar filtrado
+          cards.forEach((card, index) => {
+            const cardTags = card.getAttribute('data-tags').toLowerCase();
+            const shouldShow = filter === 'all' || cardTags.includes(filter);
+            
+            if (shouldShow) {
+              setTimeout(() => {
+                card.style.display = 'block';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, index * 100);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Prefiltrar según parámetro URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const tag = urlParams.get('tag')?.toLowerCase();
+      if (tag) {
+        const activeTag = document.querySelector(`.tag[data-filter="${tag}"]`);
+        if (activeTag) {
+          activeTag.click();
+        }
+      }
+
+      // Animaciones de entrada al scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      cards.forEach(card => {
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>

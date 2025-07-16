@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Recursos técnicos de Jorge Herrera: guías, scripts y herramientas para ciberseguridad, programación y diseño de videojuegos.">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Recursos - Jorge Herrera">
+  <meta property="og:description" content="Recursos técnicos de Jorge Herrera: guías, scripts y herramientas para ciberseguridad, programación y diseño de videojuegos.">
+  <meta property="og:image" content="../assets/images/logo.svg">
+  <meta property="og:url" content="https://tudominio.com/pages/Recursos.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Recursos - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../CSS/styles.css">
+  <link rel="stylesheet" href="archivo.css">
+  <link rel="stylesheet" href="../CSS/header.css">
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../assets/images/logo-light.png" type="image/png">
+  <link rel="preload" href="../assets/images/logo.svg" as="image">
+  <link rel="preload" href="../assets/images/logo-dark.svg" as="image">
+</head>
+<body class="projects-page">
+  <nav>
+    <div class="nav-brand">
+      <a href="../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="recursos.html" class="nav-link active" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container">
+        <div class="hero-badge">
+          <span>📚</span>
+          <span>Centro de Recursos Técnicos</span>
+        </div>
+        
+        <h1 class="hero-title">Recursos</h1>
+        
+        <p class="hero-subtitle">
+          Explorar las tecnologías, lenguajes y herramientas que domino a través de mis proyectos. 
+          Cada recurso incluye guías prácticas, documentación oficial y material de aprendizaje 
+          para implementar soluciones reales en ciberseguridad y desarrollo.
+        </p>
+        
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Lenguajes</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Herramientas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Especialidades</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions">
+          <a href="#resources" class="hero-cta primary">
+            <span>Explorar Recursos</span>
+            <span>→</span>
+          </a>
+          <a href="proyectos.html" class="hero-cta secondary">
+            <span>Ver Proyectos</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección Principal de Recursos -->
+    <section id="resources" class="archive-section">
+      <div class="section-content">
+        <div class="section-header">
+          <h2 class="section-title">Stack Tecnológico y Recursos</h2>
+          <p class="section-subtitle">
+            Tecnologías que utilizo en mis proyectos con guías de aprendizaje y documentación oficial
+          </p>
+        </div>
+        
+        <div class="tag-cloud" role="group" aria-label="Filtrar recursos por categorías">
+          <span class="tag active" data-filter="all">Todo</span>
+          <span class="tag" data-filter="lenguajes">Lenguajes</span>
+          <span class="tag" data-filter="ciberseguridad">Ciberseguridad</span>
+          <span class="tag" data-filter="frameworks">Frameworks</span>
+          <span class="tag" data-filter="herramientas">Herramientas</span>
+          <span class="tag" data-filter="sistemas">Sistemas</span>
+          <span class="tag" data-filter="bases-datos">Bases de Datos</span>
+        </div>
+
+        <div class="timeline">
+          <!-- Lenguajes de Programación -->
+          <div class="timeline-item" data-year="Lenguajes">
+            <h3>💻 Lenguajes de Programación</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="lenguajes ciberseguridad">
+                <span class="timeline-date">Principal</span>
+                <div class="timeline-content">
+                  <h4>🐚 Bash/Shell Scripting</h4>
+                  <p>Lenguaje especializado para automatización de sistemas Linux, scripts de auditoría y herramientas de ciberseguridad. Usado en mis proyectos de escáner de puertos y auditoría de permisos.</p>
+                  <div class="tech-tags">
+                    <span>Automation</span>
+                    <span>System Administration</span>
+                    <span>Security Scripts</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://www.gnu.org/software/bash/manual/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Manual Oficial
+                    </a>
+                    <a href="https://guide.bash.academy/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎓 Bash Academy
+                    </a>
+                    <a href="Proyectos/port-scanner.html" class="resource-btn tertiary">
+                      🔍 Ver Proyecto
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="lenguajes ciberseguridad bases-datos">
+                <span class="timeline-date">Consultas</span>
+                <div class="timeline-content">
+                  <h4>🗄️ SQL</h4>
+                  <p>Lenguaje de consultas para bases de datos relacionales. Especializado en análisis de logs de seguridad, filtrado de datos y detección de patrones anómalos en sistemas.</p>
+                  <div class="tech-tags">
+                    <span>Database Queries</span>
+                    <span>Security Analysis</span>
+                    <span>Data Filtering</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://www.w3schools.com/sql/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📖 W3Schools SQL
+                    </a>
+                    <a href="https://sqlbolt.com/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎯 SQL Exercises
+                    </a>
+                    <a href="Proyectos/sql-filters.html" class="resource-btn tertiary">
+                      🔍 Ver Proyecto
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="lenguajes frameworks">
+                <span class="timeline-date">Web</span>
+                <div class="timeline-content">
+                  <h4>🌐 HTML, CSS & JavaScript</h4>
+                  <p>Stack fundamental para desarrollo web frontend. Usado para crear interfaces de usuario, portfolios profesionales y aplicaciones web interactivas con diseño responsive.</p>
+                  <div class="tech-tags">
+                    <span>Frontend Development</span>
+                    <span>Responsive Design</span>
+                    <span>Interactive UX</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://developer.mozilla.org/en-US/docs/Web" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 MDN Web Docs
+                    </a>
+                    <a href="https://www.freecodecamp.org/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎓 FreeCodeCamp
+                    </a>
+                    <a href="../index.html" class="resource-btn tertiary">
+                      🌟 Ver Portfolio
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="lenguajes frameworks">
+                <span class="timeline-date">Gaming</span>
+                <div class="timeline-content">
+                  <h4>🐍 Python</h4>
+                  <p>Lenguaje versátil para desarrollo de videojuegos 2D con Pygame, scripts de automatización y análisis de datos. Sintaxis clara ideal para prototipado rápido.</p>
+                  <div class="tech-tags">
+                    <span>Game Development</span>
+                    <span>Automation</span>
+                    <span>Data Analysis</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://docs.python.org/3/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Python Docs
+                    </a>
+                    <a href="https://www.pygame.org/docs/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎮 Pygame Docs
+                    </a>
+                    <a href="proyectos.html?tag=videojuego" class="resource-btn tertiary">
+                      🎯 Ver Juegos
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="lenguajes frameworks">
+                <span class="timeline-date">Scripting</span>
+                <div class="timeline-content">
+                  <h4>💎 Ruby</h4>
+                  <p>Lenguaje de programación dinámico y expresivo, conocido por su sintaxis elegante y filosofía de productividad del desarrollador. Ideal para automatización, scripting y desarrollo web con frameworks como Rails.</p>
+                  <div class="tech-tags">
+                    <span>Web Development</span>
+                    <span>Scripting</span>
+                    <span>Automation</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://ruby-doc.org/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Ruby Docs
+                    </a>
+                    <a href="https://rubyonrails.org/doctrine" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🚀 Rails Doctrine
+                    </a>
+                    <a href="https://www.ruby-lang.org/en/documentation/quickstart/" class="resource-btn tertiary" target="_blank" rel="noopener noreferrer">
+                      🎓 Quick Start
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Herramientas de Ciberseguridad -->
+          <div class="timeline-item" data-year="Ciberseguridad">
+            <h3>🛡️ Herramientas de Ciberseguridad</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="ciberseguridad herramientas">
+                <span class="timeline-date">Esencial</span>
+                <div class="timeline-content">
+                  <h4>🔍 Nmap</h4>
+                  <p>Herramienta líder para descubrimiento de redes y auditorías de seguridad. Uso avanzado en escaneo de puertos, detección de servicios y análisis de vulnerabilidades.</p>
+                  <div class="tech-tags">
+                    <span>Network Discovery</span>
+                    <span>Port Scanning</span>
+                    <span>Security Auditing</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://nmap.org/book/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📖 Nmap Book
+                    </a>
+                    <a href="https://nmap.org/nsedoc/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🔧 NSE Scripts
+                    </a>
+                    <a href="Proyectos/port-scanner.html" class="resource-btn tertiary">
+                      🔍 Mi Escáner
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="ciberseguridad herramientas">
+                <span class="timeline-date">Análisis</span>
+                <div class="timeline-content">
+                  <h4>📡 Wireshark</h4>
+                  <p>Analizador de protocolos de red para captura y análisis de tráfico en tiempo real. Herramienta fundamental para análisis forense y debugging de comunicaciones.</p>
+                  <div class="tech-tags">
+                    <span>Packet Analysis</span>
+                    <span>Network Forensics</span>
+                    <span>Protocol Debugging</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://www.wireshark.org/docs/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Documentation
+                    </a>
+                    <a href="https://wiki.wireshark.org/SampleCaptures" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      📊 Sample Captures
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="ciberseguridad herramientas">
+                <span class="timeline-date">Web Security</span>
+                <div class="timeline-content">
+                  <h4>🕷️ Burp Suite</h4>
+                  <p>Plataforma integral para testing de aplicaciones web. Proxy HTTP, scanner de vulnerabilidades y suite completa para penetration testing de aplicaciones web.</p>
+                  <div class="tech-tags">
+                    <span>Web Application Testing</span>
+                    <span>Vulnerability Scanning</span>
+                    <span>HTTP Proxy</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://portswigger.net/burp/documentation" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Burp Docs
+                    </a>
+                    <a href="https://portswigger.net/web-security" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎓 Web Security Academy
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Sistemas y Plataformas -->
+          <div class="timeline-item" data-year="Sistemas">
+            <h3>🖥️ Sistemas y Plataformas</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="sistemas ciberseguridad">
+                <span class="timeline-date">Principal</span>
+                <div class="timeline-content">
+                  <h4>🐧 Linux (Ubuntu, Kali)</h4>
+                  <p>Sistema operativo principal para desarrollo y ciberseguridad. Especialización en Ubuntu para servidores y Kali Linux para pentesting y auditorías de seguridad.</p>
+                  <div class="tech-tags">
+                    <span>System Administration</span>
+                    <span>Penetration Testing</span>
+                    <span>Server Management</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://ubuntu.com/tutorials" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📖 Ubuntu Tutorials
+                    </a>
+                    <a href="https://www.kali.org/docs/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🔍 Kali Documentation
+                    </a>
+                    <a href="Proyectos/linux-permissions.html" class="resource-btn tertiary">
+                      🔐 Ver Proyecto
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="sistemas herramientas">
+                <span class="timeline-date">Virtualización</span>
+                <div class="timeline-content">
+                  <h4>📦 VirtualBox</h4>
+                  <p>Plataforma de virtualización para crear entornos de laboratorio aislados. Esencial para testing de seguridad, desarrollo y experimentación con diferentes sistemas.</p>
+                  <div class="tech-tags">
+                    <span>Virtualization</span>
+                    <span>Lab Environment</span>
+                    <span>Isolation Testing</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://www.virtualbox.org/manual/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 Manual VirtualBox
+                    </a>
+                    <a href="https://www.virtualbox.org/wiki/Downloads" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      💾 Descargar
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Herramientas de Desarrollo -->
+          <div class="timeline-item" data-year="Desarrollo">
+            <h3>⚙️ Herramientas de Desarrollo</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="herramientas frameworks">
+                <span class="timeline-date">Editor</span>
+                <div class="timeline-content">
+                  <h4>🖥️ Visual Studio Code</h4>
+                  <p>Editor de código principal con extensiones especializadas para desarrollo web, scripting y ciberseguridad. Configurado con themes y plugins para máxima productividad.</p>
+                  <div class="tech-tags">
+                    <span>Code Editor</span>
+                    <span>Extensions Ecosystem</span>
+                    <span>Integrated Terminal</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://code.visualstudio.com/docs" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 VS Code Docs
+                    </a>
+                    <a href="https://marketplace.visualstudio.com/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🧩 Extensions
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="herramientas sistemas">
+                <span class="timeline-date">Version Control</span>
+                <div class="timeline-content">
+                  <h4>🌿 Git & GitHub</h4>
+                  <p>Control de versiones distribuido y plataforma de colaboración. Gestión profesional de código fuente, documentación de proyectos y portfolio de desarrollo.</p>
+                  <div class="tech-tags">
+                    <span>Version Control</span>
+                    <span>Collaboration</span>
+                    <span>Project Portfolio</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://git-scm.com/doc" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📖 Git Docs
+                    </a>
+                    <a href="https://github.com/th3herrera" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🔗 Mi GitHub
+                    </a>
+                    <a href="proyectos.html" class="resource-btn tertiary">
+                      📂 Ver Repositorios
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Bases de Datos -->
+          <div class="timeline-item" data-year="Bases de Datos">
+            <h3>🗄️ Gestión de Datos</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="bases-datos ciberseguridad">
+                <span class="timeline-date">Relacional</span>
+                <div class="timeline-content">
+                  <h4>🐬 MySQL</h4>
+                  <p>Sistema de gestión de bases de datos relacionales. Uso especializado en análisis de logs de seguridad, almacenamiento de resultados de auditorías y queries de investigación.</p>
+                  <div class="tech-tags">
+                    <span>Relational Database</span>
+                    <span>Security Logs</span>
+                    <span>Data Analysis</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://dev.mysql.com/doc/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      📚 MySQL Docs
+                    </a>
+                    <a href="https://www.mysqltutorial.org/" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🎓 MySQL Tutorial
+                    </a>
+                    <a href="Proyectos/sql-filters.html" class="resource-btn tertiary">
+                      🔍 Ver Análisis SQL
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Plataformas de Aprendizaje -->
+          <div class="timeline-item" data-year="Aprendizaje">
+            <h3>🎓 Plataformas de Especialización</h3>
+            <ul>
+              <li class="timeline-entry" data-tags="ciberseguridad herramientas">
+                <span class="timeline-date">CTF</span>
+                <div class="timeline-content">
+                  <h4>🚩 TryHackMe</h4>
+                  <p>Plataforma gamificada para aprendizaje práctico de ciberseguridad. Laboratorios hands-on, challenges CTF y paths estructurados para pentesting y análisis forense.</p>
+                  <div class="tech-tags">
+                    <span>Practical Learning</span>
+                    <span>CTF Challenges</span>
+                    <span>Hands-on Labs</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://tryhackme.com/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      🚀 TryHackMe
+                    </a>
+                    <a href="https://tryhackme.com/paths" class="resource-btn secondary" target="_blank" rel="noopener noreferrer">
+                      🛤️ Learning Paths
+                    </a>
+                  </div>
+                </div>
+              </li>
+
+              <li class="timeline-entry" data-tags="ciberseguridad sistemas">
+                <span class="timeline-date">Wargames</span>
+                <div class="timeline-content">
+                  <h4>⚔️ OverTheWire</h4>
+                  <p>Colección de wargames para aprender conceptos de seguridad de forma práctica. Bandit para fundamentos de Linux, Natas para web security y más challenges especializados.</p>
+                  <div class="tech-tags">
+                    <span>Linux Fundamentals</span>
+                    <span>Progressive Learning</span>
+                    <span>Command Line Mastery</span>
+                  </div>
+                  <div class="resource-links">
+                    <a href="https://overthewire.org/wargames/" class="resource-btn primary" target="_blank" rel="noopener noreferrer">
+                      ⚔️ Wargames
+                    </a>
+                    <a href="Proyectos/bandit.html" class="resource-btn secondary">
+                      📖 Mi Guía Bandit
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h3>🚀 Stack Tecnológico en Acción</h3>
+          <p>Estas tecnologías forman el núcleo de mis proyectos de ciberseguridad y desarrollo. Cada herramienta ha sido seleccionada por su valor práctico y aplicación profesional en el mundo real.</p>
+          <div class="cta-buttons">
+            <a href="proyectos.html" class="cta-button primary" aria-label="Explorar mis proyectos">
+              🎯 Ver Proyectos Implementados
+            </a>
+            <a href="sobre-mi.html" class="cta-button secondary" aria-label="Conocer más sobre mí">
+              💼 Conoce mi Experiencia
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../assets/scripts/menu.js" defer></script>
+  <script src="../assets/scripts/theme-switcher.js" defer></script>
+  <script src="../assets/scripts/scroll-effects.js" defer></script>
+  <script>
+    // Filtro de recursos por etiquetas con animaciones suaves (basado en archivo.html)
+    document.addEventListener('DOMContentLoaded', function() {
+      const tags = document.querySelectorAll('.tag');
+      const entries = document.querySelectorAll('.timeline-entry');
+
+      tags.forEach(tag => {
+        tag.addEventListener('click', function() {
+          const filter = this.getAttribute('data-filter').toLowerCase();
+          
+          // Actualizar tags activos
+          tags.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          
+          // Animar filtrado
+          entries.forEach((entry, index) => {
+            const entryTags = entry.getAttribute('data-tags').toLowerCase();
+            const shouldShow = filter === 'all' || entryTags.includes(filter);
+            
+            if (shouldShow) {
+              setTimeout(() => {
+                entry.style.display = 'block';
+                entry.style.opacity = '1';
+                entry.style.transform = 'translateY(0)';
+              }, index * 50);
+            } else {
+              entry.style.opacity = '0';
+              entry.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                entry.style.display = 'none';
+              }, 300);
+            }
+          });
+        });
+      });
+
+      // Prefiltrar según parámetro URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const tag = urlParams.get('tag')?.toLowerCase();
+      if (tag) {
+        const activeTag = document.querySelector(`.tag[data-filter="${tag}"]`);
+        if (activeTag) {
+          activeTag.click();
+        }
+      }
+
+      // Animaciones de entrada al scroll
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, { threshold: 0.1 });
+
+      entries.forEach(entry => {
+        observer.observe(entry);
+      });
+    });
+
+    // Efecto parallax sutil en hero stats
+    document.addEventListener('mousemove', (e) => {
+      const stats = document.querySelectorAll('.stat-item');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      
+      stats.forEach((stat, index) => {
+        const speed = (index + 1) * 0.3;
+        const x = (mouseX - 0.5) * speed;
+        const y = (mouseY - 0.5) * speed;
+        
+        stat.style.transform = `translateX(${x}px) translateY(${y}px)`;
+      });
+    });
+  </script>
+</body>
+</html>

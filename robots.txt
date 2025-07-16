@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Permitir crawling de recursos importantes
+Allow: /assets/
+Allow: /CSS/
+Allow: /pages/
+
+# Bloquear archivos innecesarios para SEO
+Disallow: /assets/scripts/
+Disallow: *.js$
+
+# Sitemap
+Sitemap: https://jorgeherrera.dev/sitemap.xml
+
+# Crawl-delay para bots más agresivos
+User-agent: Bingbot
+Crawl-delay: 1
+
+User-agent: Slurp
+Crawl-delay: 1

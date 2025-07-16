@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Análisis de Seguridad con Consultas SQL - Proyecto para identificar actividades sospechosas - Jorge Herrera">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Análisis de Seguridad con SQL - Jorge Herrera">
+  <meta property="og:description" content="Proyecto para identificar actividades sospechosas utilizando consultas SQL avanzadas en bases de datos organizacionales">
+  <meta property="og:image" content="../../assets/images/logo.svg">
+  <meta property="og:url" content="https://tudominio.com/pages/Proyectos/sql-filters.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Análisis de Seguridad con SQL - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/styles.css">
+  <link rel="stylesheet" href="sql-filters.css">
+  <link rel="stylesheet" href="../../CSS/header.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../../assets/images/logo-light.png" type="image/png">
+</head>
+<body class="projects-page">
+  <!-- Navegación principal -->
+  <nav>
+    <div class="nav-brand">
+      <a href="../../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="../proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="../archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="../recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="../sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container animate-fade-in">
+        <div class="hero-badge animate-delay-1">
+          <span>🔒</span>
+          <span>Security Analysis</span>
+        </div>
+        
+        <h1 class="hero-title animate-delay-2">
+          Análisis de Seguridad con Consultas SQL
+        </h1>
+        
+        <p class="hero-subtitle animate-delay-3">
+          Proyecto que utiliza SQL para buscar actividades sospechosas en una organización. 
+          Análisis de intentos de inicio de sesión fallidos y accesos desde lugares inusuales con datos de ejemplo.
+        </p>
+        
+        <div class="hero-stats animate-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">6</span>
+            <span class="stat-label">Consultas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">SQL</span>
+            <span class="stat-label">Base de Datos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">🔍</span>
+            <span class="stat-label">Análisis</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions animate-delay-4">
+          <a href="#overview" class="hero-cta primary">
+            <span>Ver Proyecto</span>
+            <span>→</span>
+          </a>
+          <a href="https://github.com/th3herrera/Apply_Filters_to_SQL_Queries" target="_blank" rel="noopener noreferrer" class="hero-cta secondary">
+            <span>📁 GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumen del Proyecto -->
+    <section id="overview" class="section-container">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2 class="section-title">¿En qué consiste este proyecto?</h2>
+          <p class="section-subtitle">Una empresa guarda registros de accesos al sistema, y realizo un análisis de estos datos para proteger la información</p>
+        </div>
+        
+        <div class="project-overview">
+          <div class="overview-grid">
+            <div class="overview-card">
+              <div class="card-icon">🎯</div>
+              <h3>Propósito</h3>
+              <p>Imagina que una empresa guarda registros de quién intenta entrar a sus sistemas y quiénes son sus empleados. Utilizo SQL para analizar estos datos y encontrar posibles problemas, como alguien intentando entrar a horas inusuales o desde otra localización.</p>
+            </div>
+            
+            <div class="overview-card">
+              <div class="card-icon">🛡️</div>
+              <h3>Protección</h3>
+              <ul>
+                <li>Detección de accesos fuera de horario</li>
+                <li>Identificación de ubicaciones sospechosas</li>
+                <li>Análisis de empleados por departamento</li>
+                <li>Prevención de amenazas internas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Funcionalidades Principales -->
+    <section class="section-container alternate-bg">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2 class="section-title">Tablas de Ejemplo</h2>
+          <p class="section-subtitle">Para que entiendas cómo funcionan las consultas, aquí tienes las tablas con datos</p>
+        </div>
+        
+        <div class="data-tables">
+          <!-- Tabla log_in_attempts -->
+          <div class="table-container">
+            <h3 class="table-title">
+              <span class="table-icon">🔐</span>
+              Tabla de intentos de inicio de sesión
+            </h3>
+            <p class="table-description">Esta tabla registra quién intentó entrar al sistema, cuándo, desde dónde y si lo logró.</p>
+            
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Usuario</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>País</th>
+                    <th>Éxito</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>jdoe</td>
+                    <td>2022-05-08</td>
+                    <td>14:00</td>
+                    <td>MEX</td>
+                    <td class="success">Sí</td>
+                  </tr>
+                  <tr>
+                    <td>jdoe</td>
+                    <td>2022-05-08</td>
+                    <td>20:15</td>
+                    <td>MEX</td>
+                    <td class="failed">No</td>
+                  </tr>
+                  <tr>
+                    <td>asmith</td>
+                    <td>2022-05-09</td>
+                    <td>03:00</td>
+                    <td>USA</td>
+                    <td class="failed">No</td>
+                  </tr>
+                  <tr>
+                    <td>mlopez</td>
+                    <td>2022-05-09</td>
+                    <td>09:45</td>
+                    <td>MEX</td>
+                    <td class="success">Sí</td>
+                  </tr>
+                  <tr>
+                    <td>hacker1</td>
+                    <td>2022-05-09</td>
+                    <td>02:30</td>
+                    <td>RUS</td>
+                    <td class="failed">No</td>
+                  </tr>
+                  <tr>
+                    <td>csanchez</td>
+                    <td>2022-05-10</td>
+                    <td>16:20</td>
+                    <td>MEX</td>
+                    <td class="success">Sí</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tabla employees -->
+          <div class="table-container">
+            <h3 class="table-title">
+              <span class="table-icon">👥</span>
+              Tabla de empleados
+            </h3>
+            <p class="table-description">Esta tabla muestra quiénes trabajan en la empresa, en qué departamento y en qué oficina.</p>
+            
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Departamento</th>
+                    <th>Oficina</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Ana García</td>
+                    <td>Marketing</td>
+                    <td>East-101</td>
+                  </tr>
+                  <tr>
+                    <td>Luis Pérez</td>
+                    <td>Marketing</td>
+                    <td>East-203</td>
+                  </tr>
+                  <tr>
+                    <td>María López</td>
+                    <td>Finance</td>
+                    <td>West-301</td>
+                  </tr>
+                  <tr>
+                    <td>Juan Gómez</td>
+                    <td>Sales</td>
+                    <td>East-105</td>
+                  </tr>
+                  <tr>
+                    <td>Sofía Ramírez</td>
+                    <td>Technology of Information</td>
+                    <td>West-102</td>
+                  </tr>
+                  <tr>
+                    <td>Carlos Ruiz</td>
+                    <td>Finance</td>
+                    <td>West-304</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mejorar la sección de insight -->
+        <div class="data-insight">
+          <div class="insight-box">
+            <h4>💡 Importante</h4>
+            <p>Estas tablas nos ayudan a ver cómo las consultas SQL filtran datos para encontrar lo que queremos. Observa los registros marcados en <span class="suspicious-text">rojo</span> - son actividades sospechosas que nuestras consultas detectarán automáticamente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Consultas SQL Utilizadas -->
+    <section class="section-container">
+      <div class="content-wrapper">
+        <div class="section-header">
+          <h2 class="section-title">Consultas SQL que Utilicé</h2>
+          <p class="section-subtitle">Ejemplos específicos de las consultas utilizadas en el análisis</p>
+        </div>
+        
+        <div class="code-section">
+          <div class="query-example">
+            <div class="query-header">
+              <h3>a) Intentos fallidos después de las 6:00 p.m.</h3>
+              <span class="query-purpose">¿Quién intentó entrar al sistema después del horario laboral y falló?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">intentos_fallidos_horario.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM log_in_attempts 
+WHERE login_time > '18:00' 
+  AND success = FALSE;</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca intentos de inicio de sesión después de las 6:00 p.m. que no funcionaron (contraseña incorrecta).
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Usuario</th><th>Fecha</th><th>Hora</th><th>País</th><th>Éxito</th></tr>
+                  <tr class="suspicious"><td>jdoe</td><td>2022-05-08</td><td>20:15</td><td>MEX</td><td>No</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-example">
+            <div class="query-header">
+              <h3>b) Intentos en fechas específicas</h3>
+              <span class="query-purpose">¿Qué intentos de inicio de sesión hubo el 8 y 9 de mayo de 2022?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">intentos_fechas_especificas.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM log_in_attempts 
+WHERE login_date = '2022-05-09' 
+   OR login_date = '2022-05-08';</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca todos los intentos de inicio de sesión en esos dos días, ya sea que hayan tenido éxito o no.
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Usuario</th><th>Fecha</th><th>Hora</th><th>País</th><th>Éxito</th></tr>
+                  <tr><td>jdoe</td><td>2022-05-08</td><td>14:00</td><td>MEX</td><td>Sí</td></tr>
+                  <tr class="suspicious"><td>jdoe</td><td>2022-05-08</td><td>20:15</td><td>MEX</td><td>No</td></tr>
+                  <tr class="suspicious"><td>asmith</td><td>2022-05-09</td><td>03:00</td><td>USA</td><td>No</td></tr>
+                  <tr><td>mlopez</td><td>2022-05-09</td><td>09:45</td><td>MEX</td><td>Sí</td></tr>
+                  <tr class="suspicious"><td>hacker1</td><td>2022-05-09</td><td>02:30</td><td>RUS</td><td>No</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-example">
+            <div class="query-header">
+              <h3>c) Intentos desde fuera de México</h3>
+              <span class="query-purpose">¿Hubo intentos de inicio de sesión desde fuera de México?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">intentos_fuera_mexico.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM log_in_attempts 
+WHERE NOT country LIKE 'MEX%';</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca intentos de inicio de sesión desde países que no empiecen con "MEX".
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Usuario</th><th>Fecha</th><th>Hora</th><th>País</th><th>Éxito</th></tr>
+                  <tr class="suspicious"><td>asmith</td><td>2022-05-09</td><td>03:00</td><td>USA</td><td>No</td></tr>
+                  <tr class="suspicious"><td>hacker1</td><td>2022-05-09</td><td>02:30</td><td>RUS</td><td>No</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-example">
+            <div class="query-header">
+              <h3>d) Empleados en Marketing del edificio Este</h3>
+              <span class="query-purpose">¿Quiénes trabajan en Marketing y están en el edificio Este?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">empleados_marketing.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM employees 
+WHERE department = 'Marketing' 
+  AND office LIKE 'East%';</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca empleados del departamento de Marketing que trabajen en oficinas que empiecen con "East".
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Nombre</th><th>Departamento</th><th>Oficina</th></tr>
+                  <tr><td>Ana García</td><td>Marketing</td><td>East-101</td></tr>
+                  <tr><td>Luis Pérez</td><td>Marketing</td><td>East-203</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-example">
+            <div class="query-header">
+              <h3>e) Empleados en Finanzas o Ventas</h3>
+              <span class="query-purpose">¿Quiénes trabajan en los departamentos de Finanzas o Ventas?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">empleados_finanzas_ventas.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM employees 
+WHERE department = 'Finance' 
+   OR department = 'Sales';</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca empleados que estén en Finanzas o en Ventas.
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Nombre</th><th>Departamento</th><th>Oficina</th></tr>
+                  <tr><td>María López</td><td>Finance</td><td>West-301</td></tr>
+                  <tr><td>Juan Gómez</td><td>Sales</td><td>East-105</td></tr>
+                  <tr><td>Carlos Ruiz</td><td>Finance</td><td>West-304</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="query-example">
+            <div class="query-header">
+              <h3>f) Empleados que no son de Tecnología</h3>
+              <span class="query-purpose">¿Quiénes no trabajan en el departamento de Tecnología?</span>
+            </div>
+            <div class="code-example">
+              <div class="code-header">
+                <span class="file-name">empleados_no_ti.sql</span>
+                <button class="copy-btn" onclick="copyCode(this)">📋 Copiar</button>
+              </div>
+              <pre><code class="language-sql">SELECT * 
+FROM employees 
+WHERE NOT department = 'Technology of Information';</code></pre>
+            </div>
+            <div class="query-explanation">
+              <strong>Explicación:</strong> Busca empleados que no estén en el departamento de TI.
+            </div>
+            <div class="query-results">
+              <strong>Ejemplo de resultado:</strong>
+              <div class="result-table">
+                <table>
+                  <tr><th>Nombre</th><th>Departamento</th><th>Oficina</th></tr>
+                  <tr><td>Ana García</td><td>Marketing</td><td>East-101</td></tr>
+                  <tr><td>Luis Pérez</td><td>Marketing</td><td>East-203</td></tr>
+                  <tr><td>María López</td><td>Finance</td><td>West-301</td></tr>
+                  <tr><td>Juan Gómez</td><td>Sales</td><td>East-105</td></tr>
+                  <tr><td>Carlos Ruiz</td><td>Finance</td><td>West-304</td></tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Final Épico -->
+      <div class="final-cta">
+        <h3>🚀 ¿Te ha gustado este proyecto?</h3>
+        <p>Conecta conmigo y explora más proyectos de ciberseguridad</p>
+        <div class="cta-buttons">
+              <a href="../proyectos.html" class="cta-btn primary">Ver Más Proyectos</a>
+              <a href="../sobre-mi.html" class="cta-btn secondary">Conocer Más</a>
+              <a href="mailto:tu-email@ejemplo.com" class="cta-btn tertiary">Contactar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../assets/scripts/menu.js" defer></script>
+  <script src="../../assets/scripts/theme-switcher.js" defer></script>
+  <script src="../../assets/scripts/scroll-effects.js" defer></script>
+  <script src="sql-filters-effects.js" defer></script>
+  
+  <script>
+    // Función para copiar código
+    function copyCode(button) {
+      const codeBlock = button.parentElement.nextElementSibling.querySelector('code');
+      const text = codeBlock.textContent;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        button.textContent = '✅ Copiado';
+        setTimeout(() => {
+          button.textContent = '📋 Copiar';
+        }, 2000);
+      });
+    }
+
+    // Animaciones de entrada
+    document.addEventListener('DOMContentLoaded', function() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-in');
+          }
+        });
+      }, observerOptions);
+
+      // Observar elementos para animación
+      document.querySelectorAll('.feature-card, .test-case, .conclusion-card, .flow-step').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

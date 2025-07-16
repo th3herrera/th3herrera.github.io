@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proyecto Bandit - CTF de OverTheWire - Jorge Herrera">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Proyecto Bandit - Jorge Herrera">
+  <meta property="og:description" content="Documentación completa del proyecto Bandit CTF con soluciones y análisis técnico">
+  <meta property="og:image" content="../../assets/images/logo.svg">
+  <meta property="og:url" content="https://tudominio.com/pages/Proyectos/bandit.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Proyecto Bandit - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/styles.css">
+  <link rel="stylesheet" href="bandit.css">
+  <link rel="stylesheet" href="../../CSS/header.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../../assets/images/logo-light.png" type="image/png">
+</head>
+<body class="projects-page">
+   <!-- Navegación principal -->
+  <nav>
+    <div class="nav-brand">
+      <a href="../../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="../proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="../archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="../recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="../sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <main id="main" style="margin-top: 0; padding-top: 0;">
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 100vh; min-height: 100vh; max-height: 100vh; margin: 0; padding: 0;">
+      <div class="hero-container animate-fade-in">
+        <div class="hero-badge animate-delay-2">
+          <span>🛡️</span>
+          <span>Cybersecurity Challenge</span>
+        </div>
+        
+        <h1 class="hero-title animate-delay-2">
+          <span class="title-highlight" style="color: #23f444;">OverTheWire</span>
+          <span class="title-main">Bandit</span>
+        </h1>
+        
+        <p class="hero-subtitle animate-delay-3">
+          Domina los fundamentos de seguridad Linux a través de 34 niveles progresivos. 
+          Una guía completa de mi experiencia en penetration testing y hacking ético.
+        </p>
+        
+        <div class="hero-stats animate-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">34</span>
+            <span class="stat-label">Niveles</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Completado</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">CTF</span>
+            <span class="stat-label">Challenge</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions animate-delay-4">
+          <a href="#levels" class="hero-cta primary">
+            <span>Explorar Niveles</span>
+            <span>→</span>
+          </a>
+          <a href="https://github.com/th3herrera/bandit-ctf-solutions" target="_blank" rel="noopener noreferrer" class="hero-cta secondary">
+            <span>📁 GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Navegación de Niveles - COMPLETAMENTE SEPARADA -->
+    <section class="content-section" id="levels" style="margin-top: 0;">
+      <div class="section-header">
+        <h2 class="section-title">Niveles de Dificultad</h2>
+        <p class="section-subtitle">
+          Explora cada nivel con soluciones detalladas, explicaciones técnicas y comandos prácticos que yo mismo he implementado.
+        </p>
+      </div>
+      
+      <div class="level-grid">
+        <!-- Nivel 0-5: Principiante -->
+        <div class="level-card" onclick="scrollToLevel('levels-basic')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 0-5</h3>
+            <span class="level-number">BÁSICO</span>
+          </div>
+          <p class="level-description">
+            Comandos fundamentales de Linux, navegación del sistema de archivos y conceptos básicos de seguridad.
+          </p>
+          <div class="level-tags">
+            <span class="tag">SSH</span>
+            <span class="tag">cat</span>
+            <span class="tag">ls</span>
+            <span class="tag">find</span>
+          </div>
+        </div>
+
+        <!-- Nivel 6-11: Intermedio -->
+        <div class="level-card" onclick="scrollToLevel('levels-intermediate')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 6-11</h3>
+            <span class="level-number">INTERMEDIO</span>
+          </div>
+          <p class="level-description">
+            Búsquedas avanzadas, manipulación de texto y técnicas de codificación/decodificación.
+          </p>
+          <div class="level-tags">
+            <span class="tag">grep</span>
+            <span class="tag">base64</span>
+            <span class="tag">ROT13</span>
+            <span class="tag">strings</span>
+          </div>
+        </div>
+
+        <!-- Nivel 12-17: Avanzado -->
+        <div class="level-card" onclick="scrollToLevel('levels-advanced')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 12-17</h3>
+            <span class="level-number">AVANZADO</span>
+          </div>
+          <p class="level-description">
+            Compresión múltiple, claves SSH, comunicación por puertos y conexiones SSL.
+          </p>
+          <div class="level-tags">
+            <span class="tag">gzip</span>
+            <span class="tag">SSH keys</span>
+            <span class="tag">netcat</span>
+            <span class="tag">SSL</span>
+          </div>
+        </div>
+
+        <!-- Nivel 18-23: Experto -->
+        <div class="level-card" onclick="scrollToLevel('levels-expert')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 18-23</h3>
+            <span class="level-number">EXPERTO</span>
+          </div>
+          <p class="level-description">
+            Binarios setuid, programación de red, análisis de scripts y trabajos cron.
+          </p>
+          <div class="level-tags">
+            <span class="tag">setuid</span>
+            <span class="tag">cron</span>
+            <span class="tag">scripting</span>
+            <span class="tag">networking</span>
+          </div>
+        </div>
+
+        <!-- Nivel 24-29: Master -->
+        <div class="level-card" onclick="scrollToLevel('levels-master')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 24-29</h3>
+            <span class="level-number">MASTER</span>
+          </div>
+          <p class="level-description">
+            Brute force, escape de terminales, explotación de editores y repositorios Git.
+          </p>
+          <div class="level-tags">
+            <span class="tag">brute force</span>
+            <span class="tag">vim escape</span>
+            <span class="tag">git</span>
+            <span class="tag">exploitation</span>
+          </div>
+        </div>
+
+        <!-- Nivel 30-33: Legendary -->
+        <div class="level-card" onclick="scrollToLevel('levels-legendary')">
+          <div class="level-header">
+            <h3 class="level-title">Niveles 30-33</h3>
+            <span class="level-number">LEGENDARY</span>
+          </div>
+          <p class="level-description">
+            Git avanzado, tags, push remoto, restricciones de shell y desafío final.
+          </p>
+          <div class="level-tags">
+            <span class="tag">git advanced</span>
+            <span class="tag">shell bypass</span>
+            <span class="tag">final boss</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        </section>
+
+    <!-- Guía Detallada de Niveles -->
+    <section class="content-section" id="detailed-guide">
+      <div class="section-header">
+        <h2 class="section-title">Guía Detallada de Niveles</h2>
+        <p class="section-subtitle">
+          Soluciones paso a paso, comandos explicados y técnicas de hacking ético aplicadas
+        </p>
+      </div>
+
+      <!-- Niveles Básicos (0-5) -->
+      <div class="levels-section" id="levels-basic">
+        <h3 class="levels-section-title">
+          <span class="level-badge basic">BÁSICO</span>
+          Niveles 0-5: Fundamentos de Linux
+        </h3>
+        
+        <!-- Nivel 00 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-00')">
+            <div class="level-info">
+              <span class="level-number">00</span>
+              <h4 class="level-title">Primer Acceso SSH</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Introducción</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-00">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Conectarse al juego usando SSH. El host es bandit.labs.overthewire.org, puerto 2220, usuario bandit0 y contraseña bandit0.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('ssh bandit0@bandit.labs.overthewire.org -p 2220')">📋</button>
+                </div>
+                <pre><code>ssh bandit0@bandit.labs.overthewire.org -p 2220</code></pre>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Este es el punto de entrada al CTF. SSH (Secure Shell) es un protocolo de red criptográfico para conexiones seguras a sistemas remotos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 0 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-0')">
+            <div class="level-info">
+              <span class="level-number">0</span>
+              <h4 class="level-title">Lectura de Archivos Básica</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Fácil</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-0">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña para el siguiente nivel está almacenada en un archivo llamado 'readme' en el directorio home.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('pwd\nls\ncat readme')">📋</button>
+                </div>
+                <pre><code>pwd          # Ver ubicación actual
+ls           # Listar archivos
+cat readme   # Leer contenido del archivo</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If</span>
+                <button class="copy-btn" onclick="copyToClipboard('ZjLjTmM6FvvyRnrb2rfNWOZOTa6ip5If')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <ul>
+                <li><code>pwd</code>: Muestra el directorio de trabajo actual</li>
+                <li><code>ls</code>: Lista los archivos y directorios</li>
+                <li><code>cat</code>: Muestra el contenido de un archivo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 1 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-1')">
+            <div class="level-info">
+              <span class="level-number">1</span>
+              <h4 class="level-title">Archivos con Nombres Especiales</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Fácil</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-1">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en un archivo llamado '-' en el directorio home.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cat ./-')">📋</button>
+                </div>
+                <pre><code>cat ./-</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">263JGJPfgU6LtdEvgfWU1XP5yac29mFx</span>
+                <button class="copy-btn" onclick="copyToClipboard('263JGJPfgU6LtdEvgfWU1XP5yac29mFx')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>El guión '-' tiene significado especial en Unix (representa stdin/stdout). Para leer un archivo con este nombre, usamos './-' especificando la ruta relativa.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 2 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-2')">
+            <div class="level-info">
+              <span class="level-number">2</span>
+              <h4 class="level-title">Archivos con Espacios</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Fácil</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-2">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en un archivo llamado 'spaces in this filename'.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>>
+                </div>
+                <pre><code>cat "spaces in this filename"</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx</span>
+                <button class="copy-btn" onclick="copyToClipboard('MNk8KNH3Usiio41PRUEoDFPqfxLPlSmx')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Los espacios en nombres de archivo requieren comillas dobles o simples para ser interpretados como un solo argumento por la shell.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 3 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-3')">
+            <div class="level-info">
+              <span class="level-number">3</span>
+              <h4 class="level-title">Archivos Ocultos</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Fácil</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-3">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en un archivo oculto en el directorio 'inhere'.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cd inhere\nls -la\ncat ...Hiding-From-You')">📋</button>
+                </div>
+                <pre><code>cd inhere
+ls -la
+cat ...Hiding-From-You</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ</span>
+                <button class="copy-btn" onclick="copyToClipboard('2WmrDFRmJIq3IPxneAaMGhap0pFhF3NJ')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Los archivos que comienzan con punto (.) están ocultos en sistemas Unix. La opción <code>-a</code> de <code>ls</code> muestra todos los archivos, incluyendo los ocultos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 4 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-4')">
+            <div class="level-info">
+              <span class="level-number">4</span>
+              <h4 class="level-title">Identificación de Tipos de Archivo</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-4">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en el único archivo legible (ASCII text) del directorio 'inhere'.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cd inhere\nfile ./*\ncat ./-file07')">📋</button>
+                </div>
+                <pre><code>cd inhere
+file ./*        # Identificar tipos de archivo
+cat ./-file07   # Leer el archivo ASCII text</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw</span>
+                <button class="copy-btn" onclick="copyToClipboard('4oQYVPkxZOOEOO5pTW81FB8j8lxXGUQw')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>El comando <code>file</code> identifica el tipo de contenido de los archivos. Solo buscamos archivos "ASCII text" que sean legibles por humanos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 5 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-5')">
+            <div class="level-info">
+              <span class="level-number">5</span>
+              <h4 class="level-title">Búsqueda Avanzada con Find</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-5">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Encontrar un archivo con: tamaño 1033 bytes, legible por humanos y no ejecutable.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cd inhere\nfind . -type f -size 1033c ! -executable -exec file {} \\;')">📋</button>
+                </div>
+                <pre><code>cd inhere
+find . -type f -size 1033c ! -executable -exec file {} \;</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">HWasnPhtq9AVKe0dmk45nxy20cvUa6EG</span>
+                <button class="copy-btn" onclick="copyToClipboard('HWasnPhtq9AVKe0dmk45nxy20cvUa6EG')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <ul>
+                <li><code>-type f</code>: Solo archivos regulares</li>
+                <li><code>-size 1033c</code>: Exactamente 1033 bytes</li>
+                <li><code>! -executable</code>: No ejecutable</li>
+                <li><code>-exec file {} \;</code>: Ejecuta 'file' en cada resultado</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+    <!-- Niveles Intermedios (6-11) -->
+    <div class="levels-section" id="levels-intermediate">
+        <h3 class="levels-section-title">
+          <span class="level-badge intermediate">INTERMEDIO</span>
+          Niveles 6-11: Búsquedas y Codificación
+        </h3>
+        
+        <!-- Nivel 6 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-6')">
+            <div class="level-info">
+              <span class="level-number">6</span>
+              <h4 class="level-title">Búsqueda con Permisos Específicos</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-6">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Encontrar un archivo que pertenezca al usuario bandit7, grupo bandit6 y tenga 33 bytes de tamaño.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null')">📋</button>
+                </div>
+                <pre><code>find / -type f -user bandit7 -group bandit6 -size 33c 2>/dev/null</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj</span>
+                <button class="copy-btn" onclick="copyToClipboard('morbNTDkSW6jIlUc0ymOdMaLnOlFVAaj')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <ul>
+                <li><code>-user bandit7</code>: Pertenece al usuario bandit7</li>
+                <li><code>-group bandit6</code>: Pertenece al grupo bandit6</li>
+                <li><code>2>/dev/null</code>: Oculta errores de permisos denegados</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 7 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-7')">
+            <div class="level-info">
+              <span class="level-number">7</span>
+              <h4 class="level-title">Búsqueda en Texto con Grep</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-7">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en data.txt junto a la palabra "millionth".</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('grep millionth data.txt')">📋</button>
+                </div>
+                <pre><code>grep millionth data.txt</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc</span>
+                <button class="copy-btn" onclick="copyToClipboard('dfwvzFQi4mU0wfNbFOe9RoWskMLg7eEc')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p><code>grep</code> busca patrones de texto en archivos. Es fundamental para filtrar información en sistemas Linux.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 8 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-8')">
+            <div class="level-info">
+              <span class="level-number">8</span>
+              <h4 class="level-title">Líneas Únicas con Sort y Uniq</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-8">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Encontrar la única línea de texto que aparece solo una vez en data.txt.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('sort data.txt | uniq -u')">📋</button>
+                </div>
+                <pre><code>sort data.txt | uniq -u</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">4CKMh1JI91bUIZZPXDqGanal4xvAg0JM</span>
+                <button class="copy-btn" onclick="copyToClipboard('4CKMh1JI91bUIZZPXDqGanal4xvAg0JM')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <ul>
+                <li><code>sort</code>: Ordena las líneas alfabéticamente</li>
+                <li><code>uniq -u</code>: Muestra solo líneas únicas (no duplicadas)</li>
+                <li><code>|</code>: Pipe - pasa la salida de un comando al siguiente</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 9 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-9')">
+            <div class="level-info">
+              <span class="level-number">9</span>
+              <h4 class="level-title">Strings y Caracteres Especiales</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-9">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>La contraseña está en una cadena legible precedida por varios caracteres "=".</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('strings data.txt | grep &quot;=&quot; | tail -1')">📋</button>
+                </div>
+                <pre><code>strings data.txt | grep "=" | tail -1</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey</span>
+                <button class="copy-btn" onclick="copyToClipboard('FGUW5ilLVJrxX9kMYMmlN4MgbpfMiqey')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p><code>strings</code> extrae texto legible de archivos binarios. Útil para analizar ejecutables y archivos no texto.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 10 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-10')">
+            <div class="level-info">
+              <span class="level-number">10</span>
+              <h4 class="level-title">Decodificación Base64</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-10">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>El archivo data.txt contiene datos codificados en Base64.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('base64 -d data.txt')">📋</button>
+                </div>
+                <pre><code>base64 -d data.txt</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr</span>
+                <button class="copy-btn" onclick="copyToClipboard('dtR173fZKb0RRsDFSGsg2RWnpNVj3qRr')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Base64 es un sistema de codificación que convierte datos binarios en texto ASCII. La opción <code>-d</code> decodifica.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 11 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-11')">
+            <div class="level-info">
+              <span class="level-number">11</span>
+              <h4 class="level-title">Cifrado ROT13</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Intermedio</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-11">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>El texto está cifrado con ROT13 (rotación de 13 posiciones en el alfabeto).</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cat data.txt | tr &quot;a-zA-Z&quot; &quot;n-za-mN-ZA-M&quot;')">📋</button>
+                </div>
+                <pre><code>cat data.txt | tr "a-zA-Z" "n-za-mN-ZA-M"</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4</span>
+                <button class="copy-btn" onclick="copyToClipboard('7x16WNeHIi5YkIhWsfFIqoognUTyj9Q4')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>ROT13 es un cifrado Caesar simple. <code>tr</code> traduce caracteres: cada letra se desplaza 13 posiciones en el alfabeto.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Niveles Avanzados (12-17) -->
+      <div class="levels-section" id="levels-advanced">
+        <h3 class="levels-section-title">
+          <span class="level-badge advanced">AVANZADO</span>
+          Niveles 12-17: Compresión y SSH
+        </h3>
+        
+        <!-- Nivel 12 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-12')">
+            <div class="level-info">
+              <span class="level-number">12</span>
+              <h4 class="level-title">Descompresión Múltiple</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-12">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Un hexdump de un archivo comprimido múltiples veces con diferentes algoritmos.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\ncp data.txt /tmp/workdir/\nxxd -r data.txt > compressed_data\nfile compressed_data')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cp data.txt /tmp/workdir/
+xxd -r data.txt > compressed_data
+file compressed_data
+# Repetir: mv, gzip -d, bzip2 -d, tar -xf...</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn</span>
+                <button class="copy-btn" onclick="copyToClipboard('FO5dwFsc0cbaIiH0h8J2eUks2vdTDwAn')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Proceso iterativo de identificación y descompresión: gzip, bzip2, tar. <code>file</code> identifica el tipo de compresión.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 13 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-13')">
+            <div class="level-info">
+              <span class="level-number">13</span>
+              <h4 class="level-title">Autenticación con Clave SSH</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-13">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Usar una clave SSH privada para conectarse a bandit14.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('ssh -i sshkey.private bandit14@localhost -p 2220')">📋</button>
+                </div>
+                <pre><code>ssh -i sshkey.private bandit14@localhost -p 2220
+cat /etc/bandit_pass/bandit14</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS</span>
+                <button class="copy-btn" onclick="copyToClipboard('MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Autenticación SSH con clave privada. <code>-i</code> especifica el archivo de identidad (clave privada).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 14 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-14')">
+            <div class="level-info">
+              <span class="level-number">14</span>
+              <h4 class="level-title">Comunicación por Puerto con Netcat</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-14">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Enviar la contraseña actual al puerto 30000 en localhost.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('echo &quot;MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS&quot; | nc localhost 30000')">📋</button>
+                </div>
+                <pre><code>echo "MU4VWeTyJk8ROof1qqmcBPaLh7lDCPvS" | nc localhost 30000</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo</span>
+                <button class="copy-btn" onclick="copyToClipboard('8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p><code>netcat (nc)</code> es la "navaja suiza" de las redes. Permite conexiones TCP/UDP y transferencia de datos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 15 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-15')">
+            <div class="level-info">
+              <span class="level-number">15</span>
+              <h4 class="level-title">Conexión SSL/TLS con OpenSSL</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-15">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Enviar la contraseña al puerto 30001 usando cifrado SSL/TLS.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('echo &quot;8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo&quot; | openssl s_client -connect localhost:30001 -quiet')">📋</button>
+                </div>
+                <pre><code>echo "8xCjnmgoKbGLhHFAZlGE5Tmu4M2tKJQo" | openssl s_client -connect localhost:30001 -quiet</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx</span>
+                <button class="copy-btn" onclick="copyToClipboard('kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>OpenSSL permite conexiones seguras cifradas. <code>s_client</code> actúa como cliente SSL/TLS.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 16 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-16')">
+            <div class="level-info">
+              <span class="level-number">16</span>
+              <h4 class="level-title">Escaneo de Puertos y SSL</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-16">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Encontrar el puerto correcto entre 31000-32000 que acepta SSL y devuelve una clave SSH.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('nmap -p 31000-32000 localhost\nopenssl s_client -connect localhost:31790 -quiet')">📋</button>
+                </div>
+                <pre><code>nmap -p 31000-32000 localhost
+# Probar puertos SSL hasta encontrar el correcto
+openssl s_client -connect localhost:31790 -quiet
+# Introducir contraseña: kSkvUpMQ7lBYyCM4GBPvCvT1BfWRy0Dx</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">EReVavePLFHtFlFsjn3hyzMlvSuSAcRD</span>
+                <button class="copy-btn" onclick="copyToClipboard('EReVavePLFHtFlFsjn3hyzMlvSuSAcRD')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Combina escaneo de puertos con <code>nmap</code> y pruebas SSL. El servidor correcto devuelve una clave SSH privada.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 17 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-17')">
+            <div class="level-info">
+              <span class="level-number">17</span>
+              <h4 class="level-title">Comparación de Archivos con Diff</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-17">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Encontrar la diferencia entre passwords.old y passwords.new.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('diff passwords.old passwords.new')">📋</button>
+                </div>
+                <pre><code>diff passwords.old passwords.new</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO</span>
+                <button class="copy-btn" onclick="copyToClipboard('x2gLTTjFwMOhQ8oWNbMN362QKxfRqGlO')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p><code>diff</code> compara archivos línea por línea. Muestra las diferencias con > y < indicando qué archivo contiene cada línea.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Niveles Expertos (18-23) -->
+      <div class="levels-section" id="levels-expert">
+        <h3 class="levels-section-title">
+          <span class="level-badge expert">EXPERTO</span>
+          Niveles 18-23: SetUID y Scripting
+        </h3>
+        
+        <!-- Nivel 18 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-18')">
+            <div class="level-info">
+              <span class="level-number">18</span>
+              <h4 class="level-title">Bypass de .bashrc</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-18">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>El .bashrc está modificado para cerrar la sesión. Ejecutar comando antes del cierre.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('ssh bandit18@bandit.labs.overthewire.org -p 2220 &quot;cat readme&quot;')">📋</button>
+                </div>
+                <pre><code>ssh bandit18@bandit.labs.overthewire.org -p 2220 "cat readme"</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8</span>
+                <button class="copy-btn" onclick="copyToClipboard('cGWpMaKXVwDUNgPAVJbWYuGHVn9zl3j8')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>SSH permite ejecutar comandos remotos sin shell interactiva, evitando la ejecución de .bashrc.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 19 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-19')">
+            <div class="level-info">
+              <span class="level-number">19</span>
+              <h4 class="level-title">Binario SetUID</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-19">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Usar un binario setUID para ejecutar comandos como otro usuario.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('./bandit20-do cat /etc/bandit_pass/bandit20')">📋</button>
+                </div>
+                <pre><code>./bandit20-do cat /etc/bandit_pass/bandit20</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO</span>
+                <button class="copy-btn" onclick="copyToClipboard('0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>SetUID permite que un programa se ejecute con permisos del propietario del archivo, no del usuario que lo ejecuta.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 20 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-20')">
+            <div class="level-info">
+              <span class="level-number">20</span>
+              <h4 class="level-title">Cliente-Servidor con Netcat</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-20">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Crear un servidor que envíe la contraseña actual al cliente setUID.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('# Terminal 1:\\necho &quot;0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO&quot; | nc -l -p 1234\\n# Terminal 2:\\n./suconnect 1234')">📋</button>
+                </div>
+                <pre><code># Terminal 1:
+echo "0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO" | nc -l -p 1234
+
+# Terminal 2:
+./suconnect 1234</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">EeoULMCra2q0dSkYj561DX7s1CpBuOBt</span>
+                <button class="copy-btn" onclick="copyToClipboard('EeoULMCra2q0dSkYj561DX7s1CpBuOBt')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Comunicación cliente-servidor usando netcat. El servidor envía datos que el cliente setUID valida.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 21 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-21')">
+            <div class="level-info">
+              <span class="level-number">21</span>
+              <h4 class="level-title">Trabajos Cron Básicos</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-21">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Analizar trabajos cron para encontrar donde se almacena la contraseña.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('cat /etc/cron.d/cronjob_bandit22\ncat /usr/bin/cronjob_bandit22.sh\ncat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv')">📋</button>
+                </div>
+                <pre><code>cat /etc/cron.d/cronjob_bandit22
+cat /usr/bin/cronjob_bandit22.sh
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv</span>
+                <button class="copy-btn" onclick="copyToClipboard('t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Cron ejecuta tareas programadas. Los scripts generalmente guardan resultados en archivos temporales.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 22 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-22')">
+            <div class="level-info">
+              <span class="level-number">22</span>
+              <h4 class="level-title">Análisis de Scripts Cron</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-22">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Analizar un script cron que genera nombres de archivo basados en el usuario.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('echo I am user bandit23 | md5sum | cut -d &quot; &quot; -f 1\\ncat /tmp/8ca319486bfbbc3663ea0fbe81326349')">📋</button>
+                </div>
+                <pre><code>echo I am user bandit23 | md5sum | cut -d " " -f 1
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">0Zf11ioIjMVN551jX3CmStKLYqjk54Ga</span>
+                <button class="copy-btn" onclick="copyToClipboard('0Zf11ioIjMVN551jX3CmStKLYqjk54Ga')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>El script genera un hash MD5 del texto "I am user bandit23" para crear un nombre de archivo único.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 23 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-23')">
+            <div class="level-info">
+              <span class="level-number">23</span>
+              <h4 class="level-title">Creación de Scripts Personalizados</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experto</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-23">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Crear un script que sea ejecutado por cron para obtener la contraseña.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\\necho &quot;#!/bin/bash\\ncat /etc/bandit_pass/bandit24 > /tmp/mypass24.txt&quot; > /var/spool/bandit24/foo/getpass.sh\\nchmod +x /var/spool/bandit24/foo/getpass.sh')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+echo "#!/bin/bash
+cat /etc/bandit_pass/bandit24 > /tmp/mypass24.txt" > /var/spool/bandit24/foo/getpass.sh
+chmod +x /var/spool/bandit24/foo/getpass.sh
+# Esperar ejecución de cron
+cat /tmp/mypass24.txt</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8</span>
+                <button class="copy-btn" onclick="copyToClipboard('gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Escribir scripts personalizados que serán ejecutados por cron con privilegios de otro usuario.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Niveles Master (24-29) -->
+      <div class="levels-section" id="levels-master">
+        <h3 class="levels-section-title">
+          <span class="level-badge master">MASTER</span>
+          Niveles 24-29: Brute Force y Git
+        </h3>
+        
+        <!-- Nivel 24 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-24')">
+            <div class="level-info">
+              <span class="level-number">24</span>
+              <h4 class="level-title">Ataque de Fuerza Bruta</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-24">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Realizar fuerza bruta en un PIN de 4 dígitos en el puerto 30002.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('for i in {0000..9999}; do echo &quot;gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i&quot;; done | nc localhost 30002 | grep -v &quot;Wrong&quot;')">📋</button>
+                </div>
+                <pre><code>for i in {0000..9999}; do 
+    echo "gb8KRRCsshuZXI0tUuR6ypOFjiZbf3G8 $i"
+done | nc localhost 30002 | grep -v "Wrong"</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">iCi86ttT4KSNe1armKiwbQNmB3YJP3q4</span>
+                <button class="copy-btn" onclick="copyToClipboard('iCi86ttT4KSNe1armKiwbQNmB3YJP3q4')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Ataque de fuerza bruta sistemático. Se prueban todas las combinaciones posibles de 0000 a 9999.</p>
+            </div>
+          </div>
+        </div>
+
+                <!-- Nivel 25 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-25')">
+            <div class="level-info">
+              <span class="level-number">25</span>
+              <h4 class="level-title">Escape de Shell Restringida</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-25">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Escapar de una shell restringida (more) para acceder a comandos del sistema.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('ssh bandit25@localhost -p 2220 -i bandit26.sshkey\n# En more presionar: v\n# En vim: :set shell=/bin/bash\n# En vim: :shell')">📋</button>
+                </div>
+                <pre><code>ssh bandit25@localhost -p 2220 -i bandit26.sshkey
+# Redimensionar terminal para activar more
+# Presionar 'v' para abrir vim
+# En vim ejecutar:
+:set shell=/bin/bash
+:shell</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ</span>
+                <button class="copy-btn" onclick="copyToClipboard('s0773xxkk0MXfdqOfPRVr9L3jJBUOgCZ')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Shell escape via <code>more</code> → <code>vim</code>. Se aprovecha que vim puede cambiar su shell y ejecutar comandos del sistema.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 26 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-26')">
+            <div class="level-info">
+              <span class="level-number">26</span>
+              <h4 class="level-title">Escalada con SetUID via Vim</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-26">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Usar vim para explotar un binario setUID y obtener acceso privilegiado.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('# Dentro del shell de bandit26:\n./bandit27-do cat /etc/bandit_pass/bandit27')">📋</button>
+                </div>
+                <pre><code># Continuando desde el nivel 25
+# Ya con shell de bandit26:
+ls -la
+./bandit27-do cat /etc/bandit_pass/bandit27</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB</span>
+                <button class="copy-btn" onclick="copyToClipboard('upsNCc7vzaRDx6oZC6GiR6ERwe1MowGB')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Continuación del escape anterior. Una vez con shell completa, se puede usar el binario setUID para leer archivos privilegiados.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 27 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-27')">
+            <div class="level-info">
+              <span class="level-number">27</span>
+              <h4 class="level-title">Clonado de Repositorio Git</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-27">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Clonar un repositorio Git y encontrar la contraseña en los archivos.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\ncd /tmp/tmp.XXXXXX\ngit clone ssh://bandit27-git@localhost/home/bandit27-git/repo\ncd repo\ncat README')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cd /tmp/tmp.XXXXXX
+git clone ssh://bandit27-git@localhost/home/bandit27-git/repo
+cd repo
+cat README</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN</span>
+                <button class="copy-btn" onclick="copyToClipboard('Yz9IpL0sBcCeuG7m9uQFt8ZNpS4HZRcN')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Introducción a Git. Se clona un repositorio remoto y se examina su contenido para encontrar información sensible.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 28 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-28')">
+            <div class="level-info">
+              <span class="level-number">28</span>
+              <h4 class="level-title">Historial de Git</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-28">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Examinar el historial de commits de Git para encontrar información eliminada.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\ncd /tmp/tmp.XXXXXX\ngit clone ssh://bandit28-git@localhost/home/bandit28-git/repo\ncd repo\ngit log --oneline\ngit show HEAD~1')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cd /tmp/tmp.XXXXXX
+git clone ssh://bandit28-git@localhost/home/bandit28-git/repo
+cd repo
+git log --oneline
+git show HEAD~1</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S</span>
+                <button class="copy-btn" onclick="copyToClipboard('tQKvmcwNYcFS6vmPHIUSI3ShmsrQZK8S')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Git mantiene historial completo. Información "eliminada" en commits recientes puede estar en commits anteriores.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 29 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-29')">
+            <div class="level-info">
+              <span class="level-number">29</span>
+              <h4 class="level-title">Ramas de Git</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Master</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-29">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Explorar diferentes ramas de Git para encontrar información oculta.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\ncd /tmp/tmp.XXXXXX\ngit clone ssh://bandit29-git@localhost/home/bandit29-git/repo\ncd repo\ngit branch -a\ngit checkout dev\ncat README.md')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cd /tmp/tmp.XXXXXX
+git clone ssh://bandit29-git@localhost/home/bandit29-git/repo
+cd repo
+git branch -a
+git checkout dev
+cat README.md</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS</span>
+                <button class="copy-btn" onclick="copyToClipboard('xbhV3HpNGlTIdnjUrdAlPzc2L6y9EOnS')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Los desarrolladores a menudo usan ramas para desarrollo. Información sensible puede estar en ramas no principales.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Niveles Legendarios (30-33) -->
+      <div class="levels-section" id="levels-legendary">
+        <h3 class="levels-section-title">
+          <span class="level-badge legendary">LEGENDARIO</span>
+          Niveles 30-33: Git Avanzado y Desafío Final
+        </h3>
+        
+        <!-- Nivel 30 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-30')">
+            <div class="level-info">
+              <span class="level-number">30</span>
+              <h4 class="level-title">Tags de Git</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Legendario</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-30">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Explorar tags de Git para encontrar versiones específicas con información.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\ncd /tmp/tmp.XXXXXX\ngit clone ssh://bandit30-git@localhost/home/bandit30-git/repo\ncd repo\ngit tag\ngit show secret')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cd /tmp/tmp.XXXXXX
+git clone ssh://bandit30-git@localhost/home/bandit30-git/repo
+cd repo
+git tag
+git show secret</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt</span>
+                <button class="copy-btn" onclick="copyToClipboard('OoffzGDlzhAlerFJ2cAiz1D41JW1Mhmt')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Los tags en Git marcan versiones específicas. Información importante puede estar etiquetada para fácil referencia.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 31 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-31')">
+            <div class="level-info">
+              <span class="level-number">31</span>
+              <h4 class="level-title">Push a Repositorio Remoto</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Legendario</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-31">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Crear un archivo, hacer commit y push para obtener la contraseña del servidor.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('mktemp -d\\ncd /tmp/tmp.XXXXXX\\ngit clone ssh://bandit31-git@localhost/home/bandit31-git/repo\\ncd repo\\necho &quot;May I come in?&quot; > key.txt\\ngit add -f key.txt\\ngit commit -m &quot;Add key&quot;\\ngit push origin master')">📋</button>
+                </div>
+                <pre><code>mktemp -d
+cd /tmp/tmp.XXXXXX
+git clone ssh://bandit31-git@localhost/home/bandit31-git/repo
+cd repo
+echo "May I come in?" > key.txt
+git add -f key.txt
+git commit -m "Add key"
+git push origin master</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">rmCBvG56y58BXzv98yZGdO7ATVL5dW8y</span>
+                <button class="copy-btn" onclick="copyToClipboard('rmCBvG56y58BXzv98yZGdO7ATVL5dW8y')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p>Git hooks del servidor pueden ejecutar código al recibir pushes. Se usa <code>-f</code> para forzar archivos ignorados por .gitignore.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 32 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-32')">
+            <div class="level-info">
+              <span class="level-number">32</span>
+              <h4 class="level-title">Escape de UPPERCASE Shell</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Legendario</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-32">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Escapar de una shell que convierte todo a mayúsculas usando variables especiales.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Solución</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Terminal</span>
+                  <button class="copy-btn" onclick="copyToClipboard('$0\ncat /etc/bandit_pass/bandit33')">📋</button>
+                </div>
+                <pre><code># En la UPPERCASE shell:
+$0
+# Ahora en shell normal:
+cat /etc/bandit_pass/bandit33</code></pre>
+              </div>
+              <div class="credential-box">
+                <span class="credential-label">🔑 Contraseña:</span>
+                <span class="credential-value">odHo63fHiFqcWWJG9rLiLDtPm45KzUKy</span>
+                <button class="copy-btn" onclick="copyToClipboard('odHo63fHiFqcWWJG9rLiLDtPm45KzUKy')">📋</button>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Explicación</h5>
+              <p><code>$0</code> es una variable especial que contiene el nombre del shell actual, permitiendo escape de shells restringidas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nivel 33 -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('level-33')">
+            <div class="level-info">
+              <span class="level-number">33</span>
+              <h4 class="level-title">¡Felicidades! Has Completado Bandit</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Completado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="level-33">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>¡Has completado todos los niveles de Bandit! Este es el nivel final de reconocimiento.</p>
+            </div>
+            <div class="level-solution">
+              <h5>🎉 ¡Enhorabuena!</h5>
+              <div class="completion-message">
+                <div class="completion-content">
+                  <h4>🏆 ¡Has Masterizado Bandit!</h4>
+                  <p>Has demostrado dominio en:</p>
+                  <ul>
+                    <li>✅ Fundamentos de Linux y SSH</li>
+                    <li>✅ Manipulación de archivos y permisos</li>
+                    <li>✅ Técnicas de búsqueda y filtrado</li>
+                    <li>✅ Codificación y cifrado</li>
+                    <li>✅ Compresión y descompresión</li>
+                    <li>✅ Networking y protocolos seguros</li>
+                    <li>✅ Binarios setUID y escalada de privilegios</li>
+                    <li>✅ Programación y scripting</li>
+                    <li>✅ Trabajos cron y automatización</li>
+                    <li>✅ Ataques de fuerza bruta</li>
+                    <li>✅ Git y control de versiones</li>
+                    <li>✅ Shell escapes y bypasses</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sección Final Épica - Misión Completada -->
+    <section class="completion-section">
+      <div class="mission-header">
+        <div class="hacker-badge animate-fade-in">
+          <span>⚡</span>
+          <span>MISIÓN COMPLETADA</span>
+        </div>
+        <div class="mission-title-container">
+          <h3 class="mission-title animate-delay-1">
+            <span class="title-highlight">BANDIT COMPLETADO</span>
+          </h3>
+        </div>
+      </div>
+
+      <div class="completion-grid">
+        <!-- Sección de Aventuras Continuas -->
+        <div class="adventure-section animate-delay-3">
+          <h3 class="section-title-epic">
+            <span>🚀</span>
+            RECURSOS
+          </h3>
+          
+          <div class="resource-cards">
+            <a href="https://overthewire.org/wargames/" target="_blank" rel="noopener noreferrer" class="resource-card">
+              <div class="resource-header">
+                <h4 class="resource-title">OverTheWire Universe</h4>
+              </div>
+              <p class="resource-description">
+                Explora más wargames de OverTheWire como Leviathan, Natas, Krypton y más.
+              </p>
+              <span class="resource-link">
+                Explorar Wargames <span>→</span>
+              </span>
+            </a>
+
+            <a href="https://linux.die.net/" target="_blank" rel="noopener noreferrer" class="resource-card">
+              <div class="resource-header">
+                <h4 class="resource-title">Guía Linux</h4>
+              </div>
+              <p class="resource-description">
+                Guía de linux que nomina cada comando, cada herramienta.
+              </p>
+              <span class="resource-link">
+                Explorar Guía <span>→</span>
+              </span>
+            </a>
+
+            <a href="https://ctftime.org/" target="_blank" rel="noopener noreferrer" class="resource-card">
+              <div class="resource-header">
+                <h4 class="resource-title">CTF Arena Global</h4>
+              </div>
+              <p class="resource-description">
+                Página oficial de CTF de hackers éticos. Compite, aprende, conquista.
+              </p>
+              <span class="resource-link">
+                Entrar a la Arena <span>→</span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Sección de Reflexiones del Hacker -->
+        <div class="reflection-section animate-delay-4">
+          <div class="reflection-content">
+            <h3 class="section-title-epic">
+              <span>🎓</span>
+              Reflexiones
+            </h3>
+            
+            <p class="reflection-text">
+              Bandit no ha sido solo un CTF. Ha sido mi primer reto de iniciación al mundo de la ciberseguridad. 
+              Cada nivel era una barrera mental, pero con cada comando exitoso ha ayudado a forjar mi identidad como hacker. 
+              He aprendido a pensar como un atacante, a buscar vulnerabilidades y a entender la importancia de la seguridad en el mundo digital.
+            </p>
+              <div class="resource-header">
+                <h4 class="resource-title">Habilidades Adquiridas</h4>
+                </div>
+            <div class="skills-showcase">
+              <div class="skills-grid">
+                <div class="skill-badge">
+                  <span class="skill-icon">🐧</span>
+                  <div class="skill-name">Linux</div>
+                  <div class="skill-level">Master</div>
+                  <span class="skill-icon">🔍</span>
+                  <div class="skill-name">Digital Detective</div>
+                  <div class="skill-level">Expert</div>
+                  <span class="skill-icon">🛡️</span>
+                  <div class="skill-name">Security</div>
+                  <div class="skill-level">Advanced</div>
+                  <span class="skill-icon">⚡</span>
+                  <div class="skill-name">Script</div>
+                  <div class="skill-level">Pro</div>
+                  <span class="skill-icon">🌐</span>
+                  <div class="skill-name">Network Hunter</div>
+                  <div class="skill-level">Elite</div>
+                  <span class="skill-icon">🔐</span>
+                  <div class="skill-name">Crypto Breaker</div>
+                  <div class="skill-level">Legendary</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action Final Épico -->
+      <div class="final-cta">
+        <h3>🚀 ¿Te ha gustado este proyecto?</h3>
+        <p>Conecta conmigo y explora más proyectos de ciberseguridad</p>
+        <div class="cta-buttons">
+              <a href="../proyectos.html" class="cta-btn primary">Ver Más Proyectos</a>
+              <a href="../sobre-mi.html" class="cta-btn secondary">Conocer Más</a>
+              <a href="mailto:tu-email@ejemplo.com" class="cta-btn tertiary">Contactar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Scripts principales del menú -->
+  <script src="../../assets/scripts/menu.js"></script>
+  <!-- Script del theme switcher -->
+  <script src="../../assets/scripts/theme-switcher.js"></script> 
+  <!-- Scripts específicos de efectos hacker -->
+  <script src="hacker-effects.js"></script>
+  </body>
+<footer>
+  <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+</footer>
+
+</html>
+

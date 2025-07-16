@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Gestión de Permisos de Archivos en Linux - Proyecto de Jorge Herrera para auditar y asegurar permisos en sistemas Linux">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Gestión de Permisos Linux - Jorge Herrera">
+  <meta property="og:description" content="Scripts y herramientas para automatizar y auditar permisos de archivos en entornos Linux">
+  <meta property="og:image" content="../../assets/images/logo.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Gestión de Permisos Linux - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/styles.css">
+  <link rel="stylesheet" href="linux-permissions.css">
+  <link rel="stylesheet" href="../../CSS/header.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../../assets/images/logo-light.png" type="image/png">
+</head>
+<body class="projects-page">
+  <!-- Navegación principal -->
+  <nav>
+    <div class="nav-brand">
+      <a href="../../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="../proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="../archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="../recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="../sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <main id="main">
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-container animate-fade-in">
+        <div class="hero-badge animate-delay-1">
+          <span>🔒</span>
+          <span>Linux Security</span>
+        </div>
+        
+        <h1 class="hero-title animate-delay-2">
+          Gestión de Permisos Linux
+        </h1>
+        
+        <p class="hero-subtitle animate-delay-3">
+          Scripts avanzados para automatizar la auditoría y gestión de permisos de archivos en sistemas Linux.
+          Herramientas profesionales para asegurar la integridad y seguridad del sistema.
+        </p>
+        
+        <div class="hero-stats animate-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">5</span>
+            <span class="stat-label">Scripts</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">777</span>
+            <span class="stat-label">Permisos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Bash</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions animate-delay-4">
+          <a href="#overview" class="hero-cta primary">
+            <span>Ver Proyecto</span>
+            <span>→</span>
+          </a>
+          <a href="https://github.com/th3herrera/File_permissions_in_Linux" target="_blank" rel="noopener noreferrer" class="hero-cta secondary">
+            <span>📁 GitHub</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section id="overview" class="overview-section">
+      <div class="container">
+        <h2 class="section-title">¿Qué es la Gestión de Permisos Linux?</h2>
+        <div class="overview-grid">
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">🎯</div>
+            <h3>Objetivo</h3>
+            <p>Automatizar la auditoría y gestión de permisos para garantizar la seguridad y conformidad en sistemas Linux.</p>
+          </div>
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">⚡</div>
+            <h3>Tecnología</h3>
+            <p>Desarrollado con scripts Bash nativos usando comandos como ls, chmod, chown y find para máxima compatibilidad.</p>
+          </div>
+          <div class="overview-card animate-on-scroll">
+            <div class="card-icon">🛡️</div>
+            <h3>Seguridad</h3>
+            <p>Implementa mejores prácticas de seguridad para proteger archivos sensibles y cumplir con políticas corporativas.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="container">
+        <h2 class="section-title">Características Principales</h2>
+        <div class="features-grid">
+          <div class="feature-card glass animate-on-scroll">
+            <div class="feature-header">
+              <div class="feature-icon">📊</div>
+              <h3>Auditoría Automática</h3>
+            </div>
+            <p>Escaneo completo del sistema para identificar archivos y directorios con permisos incorrectos o vulnerables.</p>
+            <ul class="feature-list">
+              <li>✅ Detección de permisos excesivos</li>
+              <li>✅ Archivos con permisos 777</li>
+              <li>✅ Configuraciones SUID/SGID</li>
+              <li>✅ Reportes detallados</li>
+            </ul>
+          </div>
+          <div class="feature-card glass animate-on-scroll">
+            <div class="feature-header">
+              <div class="feature-icon">🔧</div>
+              <h3>Corrección Automática</h3>
+            </div>
+            <p>Scripts para aplicar automáticamente las correcciones de permisos según políticas predefinidas.</p>
+            <ul class="feature-list">
+              <li>✅ Aplicación masiva de permisos</li>
+              <li>✅ Respaldo antes de cambios</li>
+              <li>✅ Verificación post-corrección</li>
+              <li>✅ Logs de todas las acciones</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+      <div class="container">
+        <h2 class="section-title">Demostración Interactiva</h2>
+        <div class="demo-container">
+          <div class="demo-controls">
+            <button class="demo-btn active" data-script="audit">Auditoría</button>
+            <button class="demo-btn" data-script="fix">Corrección</button>
+            <button class="demo-btn" data-script="report">Reportes</button>
+          </div>
+          <div class="demo-terminal">
+            <div class="terminal-header">
+              <div class="terminal-controls">
+                <span class="control close"></span>
+                <span class="control minimize"></span>
+                <span class="control maximize"></span>
+              </div>
+              <div class="terminal-title">Terminal - Gestión de Permisos Linux</div>
+            </div>
+            <div class="terminal-content" id="demo-content">
+              <!-- Contenido dinámico del demo -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Section -->
+    <section id="uso" class="usage-section">
+      <div class="container">
+        <h2 class="section-title">Guía de Uso</h2>
+        <div class="usage-grid">
+          <div class="usage-card animate-on-scroll">
+            <div class="usage-header">
+              <h3>Auditoría de Permisos</h3>
+            </div>
+            <div class="usage-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Preparar el entorno</h4>
+                  <p>Descarga y configura los scripts de auditoría en tu sistema.</p>
+                  <pre><code># Clonar el repositorio
+git clone https://github.com/th3herrera/File_permissions_in_Linux.git
+cd File_permissions_in_Linux
+
+# Dar permisos de ejecución
+chmod +x *.sh</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Ejecutar auditoría completa</h4>
+                  <p>Analiza los permisos de un directorio específico o todo el sistema.</p>
+                  <pre><code># Auditar directorio específico
+./audit_permissions.sh /home/usuario/proyectos
+
+# Auditar sistema completo (requiere sudo)
+sudo ./audit_permissions.sh /</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Analizar resultados</h4>
+                  <p>Revisa el reporte generado con todas las vulnerabilidades encontradas.</p>
+                  <pre><code># Ver reporte de auditoría
+cat audit_report_$(date +%Y%m%d).txt
+
+# Filtrar archivos críticos
+grep "777\|666" audit_report_$(date +%Y%m%d).txt</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="usage-card animate-on-scroll">
+            <div class="usage-header">
+              <h3>Corrección Automática</h3>
+            </div>
+            <div class="usage-steps">
+              <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                  <h4>Crear respaldo de seguridad</h4>
+                  <p>Genera una copia de seguridad de la configuración actual antes de realizar cambios.</p>
+                  <pre><code># Crear respaldo de permisos actuales
+./backup_permissions.sh /home/usuario/proyectos
+
+# Verificar que el respaldo se creó correctamente
+ls -la backups/permissions_backup_*.txt</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                  <h4>Aplicar correcciones</h4>
+                  <p>Ejecuta las correcciones automáticas según las políticas de seguridad establecidas.</p>
+                  <pre><code># Aplicar correcciones automáticas
+./fix_permissions.sh /home/usuario/proyectos
+
+# Corrección manual de archivos específicos
+chmod 644 documento_confidencial.txt
+chmod 755 script_importante.sh</code></pre>
+                </div>
+              </div>
+              <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                  <h4>Verificar y validar</h4>
+                  <p>Confirma que los permisos se han aplicado correctamente y el sistema funciona.</p>
+                  <pre><code># Verificar permisos aplicados
+./verify_permissions.sh /home/usuario/proyectos
+
+# Comparar con el estado anterior
+diff backups/permissions_backup_*.txt current_permissions.txt</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Code Section -->
+    <section id="codigo" class="code-section">
+      <div class="container">
+        <h2 class="section-title">Implementación Técnica</h2>
+        <div class="code-tabs">
+          <button class="tab-btn active" data-tab="audit">audit-permissions.sh</button>
+          <button class="tab-btn" data-tab="fix">fix-permissions.sh</button>
+          <button class="tab-btn" data-tab="functions">Funciones Core</button>
+        </div>
+        
+        <div class="code-content" id="audit-code">
+          <div class="code-header">
+            <span class="code-title">audit_permissions.sh</span>
+            <button class="copy-btn" data-code="audit">Copiar código</button>
+          </div>
+          <pre><code>#!/bin/bash
+
+# Script de auditoría de permisos de archivos
+# Autor: Jorge Herrera (TIBU-SBY)
+# Descripción: Analiza permisos de archivos y genera reportes de seguridad
+
+AUDIT_DIR="${1:-$(pwd)}"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+REPORT_FILE="audit_report_${TIMESTAMP}.txt"
+LOG_FILE="audit_log_${TIMESTAMP}.log"
+
+# Función para logging
+log_message() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# Verificar si el directorio existe
+if [[ ! -d "$AUDIT_DIR" ]]; then
+    log_message "ERROR: El directorio $AUDIT_DIR no existe"
+    exit 1
+fi
+
+log_message "Iniciando auditoría de permisos en: $AUDIT_DIR"
+
+# Crear reporte
+{
+    echo "=== REPORTE DE AUDITORÍA DE PERMISOS ==="
+    echo "Directorio analizado: $AUDIT_DIR"
+    echo "Fecha y hora: $(date)"
+    echo "Usuario que ejecuta: $(whoami)"
+    echo "============================================"
+    echo ""
+
+    # Archivos con permisos 777 (muy peligrosos)
+    echo "🚨 ARCHIVOS CON PERMISOS 777 (CRÍTICO):"
+    find "$AUDIT_DIR" -type f -perm 777 -ls 2>/dev/null | head -20
+    echo ""
+
+    # Archivos con permisos de escritura mundial
+    echo "⚠️  ARCHIVOS CON ESCRITURA MUNDIAL:"
+    find "$AUDIT_DIR" -type f -perm -002 -ls 2>/dev/null | head -30
+    echo ""
+
+    # Archivos SUID/SGID
+    echo "🔐 ARCHIVOS CON SUID/SGID:"
+    find "$AUDIT_DIR" -type f \( -perm -4000 -o -perm -2000 \) -ls 2>/dev/null
+    echo ""
+
+    # Directorios con permisos excesivos
+    echo "📁 DIRECTORIOS CON PERMISOS EXCESIVOS:"
+    find "$AUDIT_DIR" -type d -perm -002 -ls 2>/dev/null | head -20
+    echo ""
+
+    # Archivos sin propietario
+    echo "👤 ARCHIVOS SIN PROPIETARIO VÁLIDO:"
+    find "$AUDIT_DIR" -nouser -o -nogroup 2>/dev/null | head -10
+    echo ""
+
+    # Resumen estadístico
+    echo "📊 RESUMEN ESTADÍSTICO:"
+    total_files=$(find "$AUDIT_DIR" -type f 2>/dev/null | wc -l)
+    critical_files=$(find "$AUDIT_DIR" -type f -perm 777 2>/dev/null | wc -l)
+    world_writable=$(find "$AUDIT_DIR" -type f -perm -002 2>/dev/null | wc -l)
+    
+    echo "- Total de archivos analizados: $total_files"
+    echo "- Archivos críticos (777): $critical_files"
+    echo "- Archivos con escritura mundial: $world_writable"
+    
+} > "$REPORT_FILE"
+
+log_message "Auditoría completada. Reporte guardado en: $REPORT_FILE"
+echo "📋 Reporte de auditoría: $REPORT_FILE"
+echo "📝 Log de ejecución: $LOG_FILE"</code></pre>
+        </div>
+
+        <div class="code-content" id="fix-code" style="display: none;">
+          <div class="code-header">
+            <span class="code-title">fix_permissions.sh</span>
+            <button class="copy-btn" data-code="fix">Copiar código</button>
+          </div>
+          <pre><code>#!/bin/bash
+
+# Script de corrección automática de permisos
+# Autor: Jorge Herrera (TIBU-SBY)
+# Descripción: Aplica correcciones de seguridad a permisos de archivos
+
+TARGET_DIR="${1:-$(pwd)}"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+BACKUP_DIR="./backups"
+LOG_FILE="fix_permissions_${TIMESTAMP}.log"
+DRY_RUN="${2:-false}"
+
+# Crear directorio de respaldos
+mkdir -p "$BACKUP_DIR"
+
+# Función para logging
+log_action() {
+    echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" | tee -a "$LOG_FILE"
+}
+
+# Función para crear respaldo
+create_backup() {
+    local file="$1"
+    local backup_file="$BACKUP_DIR/$(basename "$file")_perms_${TIMESTAMP}.bak"
+    stat -c "%n %a %U:%G" "$file" >> "$backup_file"
+    log_action "BACKUP: Respaldo creado para $file"
+}
+
+# Verificar directorio
+if [[ ! -d "$TARGET_DIR" ]]; then
+    log_action "ERROR: Directorio $TARGET_DIR no encontrado"
+    exit 1
+fi
+
+log_action "Iniciando corrección de permisos en: $TARGET_DIR"
+log_action "Modo dry-run: $DRY_RUN"
+
+# Contador de cambios
+changes_made=0
+
+# 1. Corregir archivos con permisos 777
+log_action "=== CORRIGIENDO ARCHIVOS CON PERMISOS 777 ==="
+while IFS= read -r -d '' file; do
+    if [[ -f "$file" ]]; then
+        create_backup "$file"
+        if [[ "$DRY_RUN" == "false" ]]; then
+            chmod 644 "$file"
+            log_action "FIXED: $file (777 → 644)"
+        else
+            log_action "DRY-RUN: $file (777 → 644)"
+        fi
+        ((changes_made++))
+    fi
+done < <(find "$TARGET_DIR" -type f -perm 777 -print0 2>/dev/null)
+
+# 2. Corregir archivos con escritura mundial
+log_action "=== REMOVIENDO ESCRITURA MUNDIAL ==="
+while IFS= read -r -d '' file; do
+    if [[ -f "$file" ]]; then
+        create_backup "$file"
+        if [[ "$DRY_RUN" == "false" ]]; then
+            chmod o-w "$file"
+            log_action "FIXED: $file (removida escritura para others)"
+        else
+            log_action "DRY-RUN: $file (removida escritura para others)"
+        fi
+        ((changes_made++))
+    fi
+done < <(find "$TARGET_DIR" -type f -perm -002 -print0 2>/dev/null)
+
+# 3. Asegurar directorios importantes
+log_action "=== ASEGURANDO DIRECTORIOS ==="
+while IFS= read -r -d '' dir; do
+    if [[ -d "$dir" ]]; then
+        create_backup "$dir"
+        if [[ "$DRY_RUN" == "false" ]]; then
+            chmod 755 "$dir"
+            log_action "FIXED: $dir (permisos de directorio → 755)"
+        else
+            log_action "DRY-RUN: $dir (permisos de directorio → 755)"
+        fi
+        ((changes_made++))
+    fi
+done < <(find "$TARGET_DIR" -type d -perm -002 -print0 2>/dev/null)
+
+# 4. Aplicar políticas específicas por tipo de archivo
+log_action "=== APLICANDO POLÍTICAS POR TIPO ==="
+# Scripts ejecutables
+find "$TARGET_DIR" -name "*.sh" -type f -exec chmod 755 {} \; 2>/dev/null
+# Archivos de configuración
+find "$TARGET_DIR" -name "*.conf" -type f -exec chmod 644 {} \; 2>/dev/null
+# Archivos de log
+find "$TARGET_DIR" -name "*.log" -type f -exec chmod 640 {} \; 2>/dev/null
+
+log_action "=== RESUMEN DE CORRECCIONES ==="
+log_action "Total de cambios realizados: $changes_made"
+log_action "Respaldos guardados en: $BACKUP_DIR"
+log_action "Log completo: $LOG_FILE"
+
+if [[ "$DRY_RUN" == "true" ]]; then
+    echo "🔍 Ejecución en modo DRY-RUN - No se realizaron cambios reales"
+    echo "📋 Para aplicar cambios, ejecuta: $0 $TARGET_DIR false"
+fi
+
+echo "✅ Corrección de permisos completada"
+echo "📝 Ver log completo: cat $LOG_FILE"</code></pre>
+        </div>
+
+        <div class="code-content" id="functions-code" style="display: none;">
+          <div class="code-header">
+            <span class="code-title">permissions_lib.sh - Funciones Core</span>
+            <button class="copy-btn" data-code="functions">Copiar código</button>
+          </div>
+          <pre><code>#!/bin/bash
+
+# Librería de funciones para gestión de permisos
+# Autor: Jorge Herrera (TIBU-SBY)
+# Descripción: Conjunto de funciones reutilizables para auditoría y gestión
+
+# Función para verificar permisos detallados de un archivo
+check_file_permissions() {
+    local file="$1"
+    
+    if [[ ! -e "$file" ]]; then
+        echo "❌ ERROR: El archivo '$file' no existe"
+        return 1
+    fi
+    
+    local perms_octal=$(stat -c "%a" "$file" 2>/dev/null)
+    local perms_symbolic=$(stat -c "%A" "$file" 2>/dev/null)
+    local owner=$(stat -c "%U" "$file" 2>/dev/null)
+    local group=$(stat -c "%G" "$file" 2>/dev/null)
+    local size=$(stat -c "%s" "$file" 2>/dev/null)
+    local modified=$(stat -c "%y" "$file" 2>/dev/null)
+    
+    echo "📄 INFORMACIÓN DEL ARCHIVO: $file"
+    echo "   Permisos octales: $perms_octal"
+    echo "   Permisos simbólicos: $perms_symbolic"
+    echo "   Propietario: $owner:$group"
+    echo "   Tamaño: $size bytes"
+    echo "   Última modificación: $modified"
+    
+    # Análisis de seguridad
+    analyze_security_risk "$file" "$perms_octal"
+}
+
+# Función para analizar riesgos de seguridad
+analyze_security_risk() {
+    local file="$1"
+    local perms="$2"
+    
+    echo "🔍 ANÁLISIS DE SEGURIDAD:"
+    
+    # Verificar permisos críticos
+    case "$perms" in
+        777) echo "   🚨 CRÍTICO: Permisos 777 - Lectura, escritura y ejecución para todos" ;;
+        666) echo "   ⚠️  ALTO: Permisos 666 - Lectura y escritura para todos" ;;
+        755) echo "   ✅ SEGURO: Permisos 755 - Configuración estándar" ;;
+        644) echo "   ✅ SEGURO: Permisos 644 - Solo lectura para grupo y otros" ;;
+        600) echo "   🔒 SEGURO: Permisos 600 - Solo propietario puede acceder" ;;
+        *) echo "   ℹ️  INFO: Permisos $perms - Verificar manualmente" ;;
+    esac
+    
+    # Verificar si es ejecutable por otros
+    if [[ $(echo "$perms" | cut -c3) -eq 1 ]] || [[ $(echo "$perms" | cut -c3) -eq 3 ]] || [[ $(echo "$perms" | cut -c3) -eq 5 ]] || [[ $(echo "$perms" | cut -c3) -eq 7 ]]; then
+        echo "   ⚠️  ADVERTENCIA: Archivo ejecutable por otros usuarios"
+    fi
+}
+
+# Función para generar reporte de seguridad detallado
+generate_security_report() {
+    local target_dir="$1"
+    local report_file="${2:-security_report_$(date +%Y%m%d_%H%M%S).html}"
+    
+    echo "🔍 Generando reporte de seguridad detallado..."
+    
+    cat > "$report_file" << EOF
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reporte de Seguridad - Permisos de Archivos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .critical { color: #dc3545; font-weight: bold; }
+        .warning { color: #ffc107; }
+        .safe { color: #28a745; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1>🔒 Reporte de Seguridad de Permisos</h1>
+    <p><strong>Directorio analizado:</strong> $target_dir</p>
+    <p><strong>Fecha de generación:</strong> $(date)</p>
+    <p><strong>Usuario:</strong> $(whoami)</p>
+    
+    <h2>📊 Resumen Ejecutivo</h2>
+    <table>
+        <tr><th>Categoría</th><th>Cantidad</th><th>Estado</th></tr>
+EOF
+
+    # Generar estadísticas
+    local total_files=$(find "$target_dir" -type f 2>/dev/null | wc -l)
+    local critical_files=$(find "$target_dir" -type f -perm 777 2>/dev/null | wc -l)
+    local world_writable=$(find "$target_dir" -type f -perm -002 2>/dev/null | wc -l)
+    local executable_others=$(find "$target_dir" -type f -perm -001 2>/dev/null | wc -l)
+    
+    cat >> "$report_file" << EOF
+        <tr><td>Total de archivos</td><td>$total_files</td><td class="safe">✅</td></tr>
+        <tr><td>Archivos críticos (777)</td><td>$critical_files</td><td class="$([ $critical_files -eq 0 ] && echo 'safe' || echo 'critical')">$([ $critical_files -eq 0 ] && echo '✅' || echo '🚨')</td></tr>
+        <tr><td>Archivos con escritura mundial</td><td>$world_writable</td><td class="$([ $world_writable -eq 0 ] && echo 'safe' || echo 'warning')">$([ $world_writable -eq 0 ] && echo '✅' || echo '⚠️')</td></tr>
+        <tr><td>Ejecutables por otros</td><td>$executable_others</td><td class="$([ $executable_others -eq 0 ] && echo 'safe' || echo 'warning')">$([ $executable_others -eq 0 ] && echo '✅' || echo '⚠️')</td></tr>
+    </table>
+    
+    <h2>🚨 Archivos Críticos</h2>
+    <pre>
+EOF
+
+    find "$target_dir" -type f -perm 777 -ls 2>/dev/null >> "$report_file"
+    
+    cat >> "$report_file" << EOF
+    </pre>
+    
+    <h2>📋 Recomendaciones</h2>
+    <ul>
+        <li>Corregir inmediatamente archivos con permisos 777</li>
+        <li>Revisar archivos con escritura mundial</li>
+        <li>Implementar políticas de permisos por tipo de archivo</li>
+        <li>Establecer monitoreo continuo de cambios</li>
+        <li>Realizar auditorías periódicas</li>
+    </ul>
+</body>
+</html>
+EOF
+
+    echo "✅ Reporte HTML generado: $report_file"
+}
+
+# Función para aplicar políticas de seguridad por tipo
+apply_file_type_policies() {
+    local target_dir="$1"
+    
+    echo "🛡️ Aplicando políticas de seguridad por tipo de archivo..."
+    
+    # Scripts de shell
+    find "$target_dir" -name "*.sh" -type f -exec chmod 755 {} \;
+    echo "   ✅ Scripts .sh configurados a 755"
+    
+    # Archivos de configuración
+    find "$target_dir" -name "*.conf" -o -name "*.cfg" -o -name "*.ini" | while read -r file; do
+        chmod 644 "$file"
+    done
+    echo "   ✅ Archivos de configuración configurados a 644"
+    
+    # Archivos de log
+    find "$target_dir" -name "*.log" -type f -exec chmod 640 {} \;
+    echo "   ✅ Archivos de log configurados a 640"
+    
+    # Archivos de datos sensibles
+    find "$target_dir" -name "*password*" -o -name "*secret*" -o -name "*key*" | while read -r file; do
+        if [[ -f "$file" ]]; then
+            chmod 600 "$file"
+            echo "   🔒 Archivo sensible protegido: $file"
+        fi
+    done
+}
+
+# Función principal de validación
+validate_permissions() {
+    local target="$1"
+    
+    if [[ ! -e "$target" ]]; then
+        echo "❌ ERROR: '$target' no existe"
+        return 1
+    fi
+    
+    if [[ -f "$target" ]]; then
+        check_file_permissions "$target"
+    elif [[ -d "$target" ]]; then
+        echo "📁 Analizando directorio: $target"
+        local file_count=$(find "$target" -type f | wc -l)
+        echo "   Archivos encontrados: $file_count"
+        
+        # Análisis rápido de problemas
+        local issues=$(find "$target" -type f \( -perm 777 -o -perm -002 \) | wc -l)
+        if [[ $issues -gt 0 ]]; then
+            echo "   ⚠️  Problemas detectados: $issues archivos requieren atención"
+        else
+            echo "   ✅ No se detectaron problemas críticos"
+        fi
+    fi
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security Section -->
+    <section class="security-section">
+      <div class="container">
+        <div class="security-content">
+          <h2 class="section-title">Consideraciones de Seguridad</h2>
+          
+          <div class="security-warning">
+            <div class="warning-icon">⚠️</div>
+            <div class="warning-content">
+              <h3>Uso Responsable</h3>
+              <p>Esta herramienta debe utilizarse únicamente en sistemas propios o con autorización explícita del administrador. Siempre crea respaldos antes de aplicar cambios masivos de permisos.</p>
+            </div>
+          </div>
+
+          <div class="security-grid">
+            <div class="security-card animate-on-scroll">
+              <h4>Mejores Prácticas</h4>
+              <ul>
+                <li>Siempre crear respaldos antes de modificar permisos</li>
+                <li>Probar cambios en entornos de desarrollo</li>
+                <li>Documentar todos los cambios realizados</li>
+                <li>Revisar logs periódicamente</li>
+                <li>Implementar monitoreo continuo</li>
+              </ul>
+            </div>
+            <div class="security-card animate-on-scroll">
+              <h4>Políticas de Cumplimiento</h4>
+              <ul>
+                <li>Seguir estándares ISO 27001</li>
+                <li>Cumplir con regulaciones GDPR</li>
+                <li>Implementar principio de menor privilegio</li>
+                <li>Auditorías regulares de acceso</li>
+                <li>Segregación de responsabilidades</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Section -->
+    <section class="technical-section">
+      <div class="container">
+        <h2 class="section-title">Detalles Técnicos</h2>
+        <div class="technical-grid">
+          <div class="technical-card animate-on-scroll">
+            <h3>Tecnologías Utilizadas</h3>
+            <div class="tech-list">
+              <span class="tech-tag">Bash</span>
+              <span class="tech-tag">Linux</span>
+              <span class="tech-tag">chmod</span>
+              <span class="tech-tag">find</span>
+              <span class="tech-tag">stat</span>
+            </div>
+            <ul>
+              <li>Scripts Bash nativos para máxima compatibilidad</li>
+              <li>Comandos estándar de Unix/Linux</li>
+              <li>Sin dependencias externas</li>
+              <li>Compatible con todas las distribuciones</li>
+            </ul>
+          </div>
+          <div class="technical-card animate-on-scroll">
+            <h3>Características Avanzadas</h3>
+            <ul>
+              <li>Procesamiento en lotes eficiente</li>
+              <li>Logging detallado de operaciones</li>
+              <li>Validación de entrada robusta</li>
+              <li>Manejo de errores comprehensivo</li>
+              <li>Reportes en múltiples formatos</li>
+              <li>Integración con sistemas de monitoreo</li>
+            </ul>
+          </div>
+          <div class="technical-card animate-on-scroll">
+            <h3>Rendimiento</h3>
+            <ul>
+              <li>Optimizado para grandes volúmenes de archivos</li>
+              <li>Procesamiento paralelo cuando es posible</li>
+              <li>Uso mínimo de recursos del sistema</li>
+              <li>Tiempo de ejecución predecible</li>
+              <li>Escalable a entornos empresariales</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action Final -->
+    <section class="final-cta-section">
+      <div class="container">
+        <div class="final-cta">
+          <h3>🚀 ¿Te ha gustado este proyecto?</h3>
+          <p>Conecta conmigo y explora más proyectos de ciberseguridad</p>
+          <div class="cta-buttons">
+            <a href="../proyectos.html" class="cta-btn primary">Ver Más Proyectos</a>
+            <a href="../sobre-mi.html" class="cta-btn secondary">Conocer Más</a>
+            <a href="mailto:jorge.herrera@ejemplo.com" class="cta-btn tertiary">Contactar</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="../../assets/scripts/menu.js" defer></script>
+  <script src="../../assets/scripts/theme-switcher.js" defer></script>
+  <script src="linux-permissions-effects.js" defer></script>
+</body>
+</html>

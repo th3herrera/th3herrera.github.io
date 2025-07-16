@@ -1,0 +1,106 @@
+Gestión de Permisos de Archivos en Linux: Guía Práctica
+======================================================
+
+Presentado por: TIBU-SBY
+Fecha: 7 de febrero de 2025
+
+Introducción
+------------
+¡Bienvenidos a esta guía sobre la gestión de permisos de archivos en Linux! Este proyecto muestra cómo asegurar archivos y directorios usando comandos como `ls` y `chmod`. Ya seas principiante o profesional de TI, esta presentación te ayudará a entender cómo controlar el acceso a archivos y garantizar la seguridad del sistema.
+
+Objetivo del Proyecto
+--------------------
+El objetivo es gestionar los permisos en el directorio `/home/researcher2/projects` para asegurar que solo los usuarios autorizados tengan acceso. Usaremos comandos de Linux para verificar y modificar permisos, haciendo el sistema más seguro.
+
+Paso 1: Verificar Permisos Actuales
+----------------------------------
+Para empezar, revisamos los permisos de los archivos en el directorio con el siguiente comando:
+
+```
+ls -la /home/researcher2/projects
+```
+
+**Salida ejemplo:**
+```
+ទ
+-rw-rw-rw- 1 researcher2 researcher2 1234 Feb 7 12:00 project_k.txt
+-rw-r--r-- 1 researcher2 researcher2 1234 Feb 7 12:00 project_m.txt
+-rw-rw-r-- 1 researcher2 researcher2 1234 Feb 7 12:00 project_r.txt
+-rw-rw-r-- 1 researcher2 researcher2 1234 Feb 7 12:00 project_t.txt
+-rw--w---- 1 researcher2 researcher2 1234 Feb 7 12:00 .project_x.txt
+drwx--x--- 1 researcher2 researcher2 4096 Feb 7 12:00 drafts
+```
+
+**Explicación de la Cadena de Permisos**
+Tomemos el archivo `project_k.txt` con permisos `-rw-rw-rw-`:
+- **-**: Archivo normal.
+- **rw-**: El usuario tiene permisos de lectura y escritura.
+- **rw-**: El grupo tiene permisos de lectura y escritura.
+- **rw-**: Otros tienen permisos de lectura y escritura (¡esto es un riesgo de seguridad!).
+
+Paso 2: Corregir Permisos Vulnerables
+------------------------------------
+Algunos archivos tienen permisos incorrectos que permiten acceso no autorizado. Los corregimos con `chmod`:
+
+1. Eliminamos permisos de escritura para "otros" en `project_k.txt`:
+```
+chmod o-w project_k.txt
+```
+
+2. Eliminamos permisos de lectura para "otros" en `project_r.txt` y `project_t.txt`:
+```
+chmod o-r project_r.txt
+chmod o-r project_t.txt
+```
+
+**Resultado esperado:**
+```
+-rw-rw-r-- 1 researcher2 researcher2 1234 Feb 7 12:00 project_k.txt
+-rw-rw---- 1 researcher2 researcher2 1234 Feb 7 12:00 project_r.txt
+-rw-rw---- 1 researcher2 researcher2 1234 Feb 7 12:00 project_t.txt
+```
+
+Ahora, estos archivos son más seguros, restringiendo el acceso a usuarios no autorizados.
+
+Paso 3: Asegurar Archivos Ocultos
+--------------------------------
+El archivo oculto `.project_x.txt` tiene permisos `-rw--w----`. Queremos que solo el usuario y el grupo puedan leerlo, sin permisos de escritura para nadie:
+
+```
+chmod u=r,g=r,o= .project_x.txt
+```
+
+**Resultado esperado:**
+```
+-r--r----- 1 researcher2 researcher2 1234 Feb 7 12:00 .project_x.txt
+```
+
+Paso 4: Proteger Directorios
+---------------------------
+El directorio `drafts` debe ser accesible solo por el propietario (`researcher2`). Eliminamos permisos de ejecución para el grupo:
+
+```
+chmod g-x drafts
+```
+
+**Resultado esperado:**
+```
+drwx------ 1 researcher2 researcher2 4096 Feb 7 12:00 drafts
+```
+
+Esto asegura que solo el propietario pueda leer, escribir y acceder al directorio.
+
+Resumen
+-------
+1. Usa `ls -la` para verificar los permisos actuales.
+2. Identifica permisos incorrectos o riesgosos.
+3. Corrige permisos con `chmod` para garantizar seguridad.
+4. Protege archivos ocultos y directorios sensibles.
+
+¡Con estos pasos, tus archivos y directorios en Linux estarán seguros!
+
+Contacto
+--------
+Creado por TIBU-SBY. Para más información, visita [enlace a tu página web o contacto].
+
+¡Gracias por seguir esta guía! Aprende, practica y asegura tus sistemas Linux.

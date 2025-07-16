@@ -1,0 +1,301 @@
+/* ===================== ESTILOS PRINCIPALES DE NAVEGACIÓN ===================== */
+main {
+  padding-top: 70px;
+}
+
+/* ========== BARRA DE NAVEGACIÓN ========== */
+nav {
+  display: flex;
+  align-items: center;
+  height: 70px;
+  background: linear-gradient(135deg, #1e3a8a 0%, #051b3f 100%);
+  padding: 0 2rem;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+html[data-theme="dark"] nav {
+  background: linear-gradient(135deg, #0f172a 0%, #041027 50%, #041833 100%);
+}
+
+/* ========== MARCA/LOGO ========== */
+.nav-brand {
+  display: flex;
+  align-items: center;
+}
+
+.nav-brand .logo {
+  color: #E6AD22;
+  height: 60px;
+  width: auto;
+}
+
+/* ========== ENLACES DE NAVEGACIÓN ========== */
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.nav-link {
+  color: #FFFDF9;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: color 0.2s;
+  text-decoration: none;
+  position: relative;
+}
+
+html[data-theme="dark"] .nav-link {
+  color: #F6F5F2;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: #E6AD22 !important;
+}
+
+/* Subrayado animado */
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #E6AD22;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ========== BOTÓN DE TEMA ========== */
+.theme-btn {
+  background: rgba(230, 173, 34, 0.1);
+  border: 2px solid rgba(230, 173, 34, 0.3);
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #E6AD22;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.theme-btn:hover {
+  background: rgba(230, 173, 34, 0.2);
+  border-color: rgba(230, 173, 34, 0.6);
+}
+
+.theme-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* ========== MENÚ HAMBURGUESA ========== */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #E6AD22;
+  transition: all 0.3s ease;
+}
+
+/* ========== RESPONSIVE - MÓVILES (768px y menos) ========== */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  main {
+    padding-top: 60px;
+  }
+
+  .nav-brand .logo {
+    height: 50px;
+  }
+
+  /* Ocultar navegación normal y mostrar hamburguesa */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(135deg, #1e3a8a 0%, #051b3f 100%);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    transform: none;
+    left: auto;
+    z-index: 1002;
+  }
+
+  html[data-theme="dark"] .nav-links {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    font-size: 1.2rem;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 8px;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    background: rgba(230, 173, 34, 0.15);
+  }
+
+  .hamburger {
+    display: flex;
+    position: absolute;
+    right: 1rem;
+    z-index: 1003;
+  }
+
+  .theme-btn {
+    position: absolute;
+    right: 4rem;
+    width: 44px;
+    height: 44px;
+    z-index: 1003;
+  }
+
+  /* Animación hamburguesa a X */
+  .hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+  }
+
+  /* Overlay de fondo */
+  .nav-links.active::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+/* ========== TABLETS (769px - 1024px) ========== */
+@media (min-width: 769px) and (max-width: 1024px) {
+  nav {
+    padding: 0 1.5rem;
+  }
+
+  .nav-links {
+    gap: 1.2rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .theme-btn {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ========== MÓVILES PEQUEÑOS (480px y menos) ========== */
+@media (max-width: 480px) {
+  nav {
+    height: 55px;
+    padding: 0 0.5rem;
+  }
+
+  main {
+    padding-top: 55px;
+  }
+
+  .nav-brand .logo {
+    height: 45px;
+  }
+
+  .nav-links {
+    width: 100vw;
+    padding: 1.5rem;
+  }
+
+  .theme-btn {
+    width: 40px;
+    height: 40px;
+    right: 3rem;
+  }
+
+  .hamburger {
+    right: 0.5rem;
+  }
+}
+
+/* ========== MEJORAS DE ACCESIBILIDAD ========== */
+.nav-link:focus-visible,
+.theme-btn:focus-visible,
+.hamburger:focus-visible {
+  outline: 2px solid #E6AD22;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+  }
+}
+
+/* ========== OPTIMIZACIONES TÁCTILES ========== */
+@media (hover: none) and (pointer: coarse) {
+  .nav-link,
+  .theme-btn,
+  .hamburger {
+    min-height: 44px;
+  }
+}

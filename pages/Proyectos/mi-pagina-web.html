@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mi Página Web - Desarrollo del Portfolio Personal - Jorge Herrera">
+  <meta name="author" content="Jorge Herrera">
+  <meta property="og:title" content="Mi Página Web - Jorge Herrera">
+  <meta property="og:description" content="Documentación completa del desarrollo de mi portfolio web personal">
+  <meta property="og:image" content="../../assets/images/logo.svg">
+  <meta property="og:url" content="https://tudominio.com/pages/proyectos/mi-pagina-web.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Mi Página Web - Jorge Herrera</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../CSS/styles.css">
+  <link rel="stylesheet" href="mi-pagina-web.css">
+  <link rel="stylesheet" href="../../CSS/header.css">
+  <link rel="icon" href="../../favicon.ico" type="image/x-icon" id="favicon">
+  <link rel="alternate icon" href="../../assets/images/logo-light.png" type="image/png">
+</head>
+<body class="projects-page">
+  <!-- Navegación principal -->
+  <nav>
+    <div class="nav-brand">
+      <a href="../../index.html" aria-label="Inicio - Jorge Herrera">
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+          <style>
+            .cls-1,.cls-2{fill:currentColor;}
+            .cls-1{stroke:currentColor;stroke-miterlimit:10;}
+          </style>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+          <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+          <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+          <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+          <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+      </a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="../../index.html" class="nav-link" aria-label="Ir a la página de inicio">Inicio</a></li>
+      <li><a href="../proyectos.html" class="nav-link" aria-label="Ir a la página de proyectos">Proyectos</a></li>
+      <li><a href="../archivo.html" class="nav-link" aria-label="Ir a la página de archivo">Archivo</a></li>
+      <li><a href="../recursos.html" class="nav-link" aria-label="Ir a la página de recursos">Recursos</a></li>
+      <li><a href="../sobre-mi.html" class="nav-link" aria-label="Ir a la página sobre mí">Sobre Mí</a></li>
+    </ul>
+    <button id="theme-toggle" aria-label="Cambiar a tema oscuro" class="theme-btn">
+      <svg class="theme-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Icono de luna para tema claro (cambiar a oscuro) -->
+        <path class="moon-icon" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" style="display: block;"/>
+        <!-- Icono de sol para tema oscuro (cambiar a claro) -->
+        <g class="sun-icon" style="display: none;">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </g>
+      </svg>
+    </button>
+    <button class="hamburger" aria-label="Abrir menú" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Botón volver atrás -->
+  <div class="back-btn-container">
+    <button class="back-btn" onclick="window.history.back()" aria-label="Volver atrás">←</button>
+  </div>
+
+  <!-- Contenido principal -->
+  <main id="main" style="margin-top: 0; padding-top: 0;">
+    <!-- Hero Section -->
+    <section class="hero-section" style="height: 100vh; min-height: 100vh; max-height: 100vh; margin: 0; padding: 0;">
+      <div class="hero-container animate-fade-in">
+        <div class="hero-badge animate-delay-2">
+          <span>🌐</span>
+          <span>Web Development Project</span>
+        </div>
+        
+        <h1 class="hero-title animate-delay-2">
+          <span class="title-highlight" style="color: #E6AD22;">Mi Página</span>
+          <span class="title-main">Web</span>
+        </h1>
+        
+        <p class="hero-subtitle animate-delay-3">
+          Documentación completa del desarrollo de mi portfolio web personal. 
+          Del concepto inicial a la implementación final, una guía técnica detallada.
+        </p>
+        
+        <div class="hero-stats animate-delay-3">
+          <div class="stat-item">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Semanas</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Completado</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Tecnologías</span>
+          </div>
+        </div>
+        
+        <div class="hero-actions animate-delay-4">
+          <a href="#development-phases" class="hero-cta primary">
+            <span>Ver Desarrollo</span>
+            <span>→</span>
+          </a>
+          <a href="../../index.html" target="_blank" rel="noopener noreferrer" class="hero-cta secondary">
+            <span>🌐 Ver Sitio</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Fases de Desarrollo -->
+    <section class="content-section" id="development-phases" style="margin-top: 0;">
+      <div class="section-header">
+        <h2 class="section-title">Fases de Desarrollo</h2>
+        <p class="section-subtitle">
+          Explora cada etapa del desarrollo con explicaciones técnicas, decisiones de diseño y implementaciones prácticas.
+        </p>
+      </div>
+      
+      <div class="level-grid">
+        <!-- Planificación -->
+        <div class="level-card" onclick="scrollToLevel('phase-planning')">
+          <div class="level-header">
+            <h3 class="level-title">Planificación</h3>
+            <span class="level-number">FASE 1</span>
+          </div>
+          <p class="level-description">
+            Investigación, análisis de requisitos, arquitectura de información y diseño conceptual.
+          </p>
+          <div class="level-tags">
+            <span class="tag">Research</span>
+            <span class="tag">UX Design</span>
+            <span class="tag">Wireframes</span>
+            <span class="tag">Architecture</span>
+          </div>
+        </div>
+
+        <!-- Diseño -->
+        <div class="level-card" onclick="scrollToLevel('phase-design')">
+          <div class="level-header">
+            <h3 class="level-title">Diseño</h3>
+            <span class="level-number">FASE 2</span>
+          </div>
+          <p class="level-description">
+            Identidad visual, paleta de colores, tipografía, sistema de componentes y mockups.
+          </p>
+          <div class="level-tags">
+            <span class="tag">Visual Identity</span>
+            <span class="tag">Color Theory</span>
+            <span class="tag">Typography</span>
+            <span class="tag">UI Components</span>
+          </div>
+        </div>
+
+        <!-- Desarrollo -->
+        <div class="level-card" onclick="scrollToLevel('phase-development')">
+          <div class="level-header">
+            <h3 class="level-title">Desarrollo</h3>
+            <span class="level-number">FASE 3</span>
+          </div>
+          <p class="level-description">
+            Implementación HTML semántico, CSS moderno, JavaScript interactivo y optimización.
+          </p>
+          <div class="level-tags">
+            <span class="tag">HTML5</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Responsive</span>
+          </div>
+        </div>
+
+        <!-- Testing & Deploy -->
+        <div class="level-card" onclick="scrollToLevel('phase-deploy')">
+          <div class="level-header">
+            <h3 class="level-title">Testing & Deploy</h3>
+            <span class="level-number">FASE 4</span>
+          </div>
+          <p class="level-description">
+            Pruebas de compatibilidad, optimización de performance, accesibilidad y despliegue.
+          </p>
+          <div class="level-tags">
+            <span class="tag">Testing</span>
+            <span class="tag">Performance</span>
+            <span class="tag">Accessibility</span>
+            <span class="tag">Deploy</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guía Detallada de Desarrollo -->
+    <section class="content-section" id="detailed-guide">
+      <div class="section-header">
+        <h2 class="section-title">Guía Detallada de Desarrollo</h2>
+        <p class="section-subtitle">
+          Proceso completo paso a paso, código fuente y decisiones técnicas explicadas
+        </p>
+      </div>
+
+      <!-- Fase 1: Planificación -->
+      <div class="levels-section" id="phase-planning">
+        <h3 class="levels-section-title">
+          <span class="level-badge basic">FASE 1</span>
+          Planificación y Análisis
+        </h3>
+        
+        <!-- Investigación -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('research')">
+            <div class="level-info">
+              <span class="level-number">1.1</span>
+              <h4 class="level-title">Investigación y Referencias</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Estratégico</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="research">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Analizar portfolios exitosos en tecnología y ciberseguridad para identificar patrones, tendencias y mejores prácticas.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Proceso</h5>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h4>🎯 Audiencia Objetivo</h4>
+                  <ul>
+                    <li>Empleadores en tecnología</li>
+                    <li>Recruiters especializados</li>
+                    <li>Colegas y colaboradores</li>
+                    <li>Empresas de ciberseguridad</li>
+                  </ul>
+                </div>
+                <div class="info-card">
+                  <h4>📱 Requisitos Técnicos</h4>
+                  <ul>
+                    <li>Diseño responsive</li>
+                    <li>Tema claro/oscuro</li>
+                    <li>Navegación intuitiva</li>
+                    <li>Tiempo de carga < 3s</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Insights Clave</h5>
+              <p>Los portfolios más exitosos combinan profesionalismo visual con funcionalidad técnica, priorizando la experiencia del usuario sobre efectos llamativos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arquitectura -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('architecture')">
+            <div class="level-info">
+              <span class="level-number">1.2</span>
+              <h4 class="level-title">Arquitectura de Información</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Estructural</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="architecture">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Diseñar una estructura de navegación clara y lógica que permita encontrar información fácilmente.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Estructura Final</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Sitemap</span>
+                  <button class="copy-btn" onclick="copyToClipboard('sitemap-structure')">📋</button>
+                </div>
+                <pre><code>📂 Estructura del Sitio
+├── 🏠 Inicio (index.html)
+│   ├── Hero Section
+│   ├── Proyectos Destacados
+│   ├── Archivo Profesional
+│   ├── Recursos Técnicos
+│   ├── Sobre Mí
+│   └── Contacto
+├── 🚀 Proyectos
+│   ├── Lista completa de proyectos
+│   ├── Filtros por tecnología
+│   └── Páginas individuales de cada proyecto
+├── 📚 Archivo
+│   ├── Línea de tiempo profesional
+│   ├── Certificaciones
+│   └── Logros académicos
+├── ⚡ Recursos
+│   ├── Herramientas técnicas
+│   ├── Guías especializadas
+│   └── Enlaces útiles
+└── 👨‍💻 Sobre Mí
+    ├── Perfil profesional
+    ├── Habilidades técnicas
+    └── Información personal</code></pre>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Principios Aplicados</h5>
+              <p>Estructura jerárquica clara, navegación consistente y acceso rápido a información clave en menos de 3 clics.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 2: Diseño -->
+      <div class="levels-section" id="phase-design">
+        <h3 class="levels-section-title">
+          <span class="level-badge intermediate">FASE 2</span>
+          Diseño y Experiencia de Usuario
+        </h3>
+        
+        <!-- Identidad Visual -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('visual-identity')">
+            <div class="level-info">
+              <span class="level-number">2.1</span>
+              <h4 class="level-title">Identidad Visual</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Creativo</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="visual-identity">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Desarrollar una identidad visual coherente que refleje profesionalismo y expertise técnico.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Paleta de Colores</h5>
+              <div class="design-showcase">
+                <div class="color-palette">
+                  <div class="color-grid">
+                    <div class="color-item">
+                      <div class="color-swatch" style="background: #1c5197;"></div>
+                      <span>Azul Principal<br><code>#1c5197</code></span>
+                    </div>
+                    <div class="color-item">
+                      <div class="color-swatch" style="background: #E6AD22;"></div>
+                      <span>Dorado Acento<br><code>#E6AD22</code></span>
+                    </div>
+                    <div class="color-item">
+                      <div class="color-swatch" style="background: #F8FAFC;"></div>
+                      <span>Blanco Base<br><code>#F8FAFC</code></span>
+                    </div>
+                    <div class="color-item">
+                      <div class="color-swatch" style="background: #0F172A;"></div>
+                      <span>Oscuro Base<br><code>#0F172A</code></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Psicología del Color</h5>
+              <p>Azul transmite confianza y profesionalismo, dorado añade sofisticación, mientras que el contraste alto mejora la legibilidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tipografía -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('typography')">
+            <div class="level-info">
+              <span class="level-number">2.2</span>
+              <h4 class="level-title">Sistema Tipográfico</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Técnico</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="typography">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Seleccionar y implementar una combinación tipográfica que equilibre legibilidad y personalidad técnica.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Fuentes Seleccionadas</h5>
+              <div class="typography-showcase">
+                <div class="font-example">
+                  <h4 style="font-family: 'Space Grotesk', sans-serif;">Space Grotesk</h4>
+                  <p>Títulos y encabezados principales. Transmite modernidad y technicidad.</p>
+                </div>
+                <div class="font-example">
+                  <h4 style="font-family: 'Inter', sans-serif;">Inter</h4>
+                  <p>Fuente principal para el cuerpo del texto. Excelente legibilidad en pantallas.</p>
+                </div>
+                <div class="font-example">
+                  <h4 style="font-family: 'JetBrains Mono', monospace;">JetBrains Mono</h4>
+                  <p>Reservada para código y elementos técnicos. Optimizada para desarrollo.</p>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Criterios de Selección</h5>
+              <p>Legibilidad en múltiples tamaños, soporte Unicode completo, optimización web y coherencia con la identidad técnica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 3: Desarrollo -->
+      <div class="levels-section" id="phase-development">
+        <h3 class="levels-section-title">
+          <span class="level-badge advanced">FASE 3</span>
+          Desarrollo e Implementación
+        </h3>
+        
+        <!-- HTML Semántico -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('html-semantic')">
+            <div class="level-info">
+              <span class="level-number">3.1</span>
+              <h4 class="level-title">HTML5 Semántico</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Fundamental</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="html-semantic">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Estructura HTML semántica para mejorar SEO y accesibilidad.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Elementos Implementados</h5>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h4>📋 Estructura Base</h4>
+                  <ul>
+                    <li>&lt;nav&gt; para navegación</li>
+                    <li>&lt;main&gt; para contenido principal</li>
+                    <li>&lt;section&gt; para cada área</li>
+                    <li>&lt;footer&gt; para pie de página</li>
+                  </ul>
+                </div>
+                <div class="info-card">
+                  <h4>♿ Accesibilidad</h4>
+                  <ul>
+                    <li>aria-label en botones</li>
+                    <li>aria-expanded para menús</li>
+                    <li>section con aria-labelledby</li>
+                    <li>Skip links para navegación</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Beneficios</h5>
+              <p>Mejor SEO, compatibilidad con lectores de pantalla y código más mantenible.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sistema CSS -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('css-system')">
+            <div class="level-info">
+              <span class="level-number">3.2</span>
+              <h4 class="level-title">Sistema CSS Modular</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Avanzado</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="css-system">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Sistema CSS escalable con variables y metodología modular.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Características Principales</h5>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h4>🎨 Variables CSS</h4>
+                  <ul>
+                    <li>Colores para temas claro/oscuro</li>
+                    <li>Espaciado consistente</li>
+                    <li>Tipografía unificada</li>
+                    <li>Transiciones globales</li>
+                  </ul>
+                </div>
+                <div class="info-card">
+                  <h4>📦 Organización</h4>
+                  <ul>
+                    <li>Archivo base global</li>
+                    <li>Estilos específicos por página</li>
+                    <li>Componentes reutilizables</li>
+                    <li>Media queries organizadas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Beneficios</h5>
+              <p>Mantenimiento fácil, temas dinámicos y escalabilidad para futuros cambios.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- JavaScript Interactivo -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('javascript-features')">
+            <div class="level-info">
+              <span class="level-number">3.3</span>
+              <h4 class="level-title">JavaScript ES6+</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Interactivo</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="javascript-features">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Funcionalidades interactivas modernas con JavaScript ES6+.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Características Implementadas</h5>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h4>🌙 Theme Switcher</h4>
+                  <ul>
+                    <li>Cambio dinámico de tema</li>
+                    <li>Persistencia en localStorage</li>
+                    <li>Actualización automática del icono</li>
+                    <li>Detección de preferencia del sistema</li>
+                  </ul>
+                </div>
+                <div class="info-card">
+                  <h4>📱 Navegación Responsive</h4>
+                  <ul>
+                    <li>Menú hamburguesa funcional</li>
+                    <li>Smooth scrolling</li>
+                    <li>Active states dinámicos</li>
+                    <li>Gestión de eventos táctiles</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Técnicas</h5>
+              <p>Event delegation, localStorage, manipulación del DOM y gestión de estado.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Arquitectura de Archivos -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('file-architecture')">
+            <div class="level-info">
+              <span class="level-number">3.4</span>
+              <h4 class="level-title">Arquitectura de Archivos</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Organizacional</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="file-architecture">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Organización escalable siguiendo estándares de la industria.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Estructura Principal</h5>
+              <div class="info-grid">
+                <div class="info-card">
+                  <h4>📁 Carpetas Base</h4>
+                  <ul>
+                    <li><strong>assets/</strong> - Recursos multimedia</li>
+                    <li><strong>CSS/</strong> - Estilos globales</li>
+                    <li><strong>pages/</strong> - Páginas del sitio</li>
+                    <li><strong>pages/Proyectos/</strong> - Proyectos individuales</li>
+                  </ul>
+                </div>
+                <div class="info-card">
+                  <h4>🗂️ Organización</h4>
+                  <ul>
+                    <li>Separación por funcionalidad</li>
+                    <li>Nomenclatura consistente</li>
+                    <li>Scripts específicos por página</li>
+                    <li>Recursos compartidos centralizados</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Beneficios</h5>
+              <p>Fácil navegación, mantenimiento simplificado y escalabilidad para nuevos proyectos.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diseño Responsive -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('responsive-design')">
+            <div class="level-info">
+              <span class="level-number">3.5</span>
+              <h4 class="level-title">Diseño Responsive</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Adaptativo</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="responsive-design">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Experiencia consistente en todos los dispositivos con mobile-first design.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Estrategia Implementada</h5>
+              <div class="device-grid">
+                <div class="device-item">
+                  <h4>📱 Móvil (320-767px)</h4>
+                  <ul>
+                    <li>Menú hamburguesa</li>
+                    <li>Stack de elementos</li>
+                    <li>Touch targets grandes</li>
+                    <li>Tipografía optimizada</li>
+                  </ul>
+                </div>
+                <div class="device-item">
+                  <h4>📱 Tablet (768-1023px)</h4>
+                  <ul>
+                    <li>Grid de 2 columnas</li>
+                    <li>Navegación híbrida</li>
+                    <li>Sidebar colapsible</li>
+                    <li>Hover states reducidos</li>
+                  </ul>
+                </div>
+                <div class="device-item">
+                  <h4>🖥️ Desktop (1024px+)</h4>
+                  <ul>
+                    <li>Grid completo</li>
+                    <li>Navegación completa</li>
+                    <li>Efectos hover</li>
+                    <li>Múltiples columnas</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Técnicas</h5>
+              <p>Mobile-first CSS, flexbox y grid adaptativos, imágenes responsivas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Animaciones y Microinteracciones -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('animations')">
+            <div class="level-info">
+              <span class="level-number">3.6</span>
+              <h4 class="level-title">Animaciones y Microinteracciones</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Experiencial</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="animations">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Animaciones sutiles que mejoren la UX sin comprometer performance.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Sistema Implementado</h5>
+              <div class="principles-grid">
+                <div class="principle-item">
+                  <h4>⚡ Performance First</h4>
+                  <p>Solo animamos transform y opacity para evitar reflows</p>
+                </div>
+                <div class="principle-item">
+                  <h4>🎯 Propósito Claro</h4>
+                  <p>Cada animación guía al usuario o proporciona feedback</p>
+                </div>
+                <div class="principle-item">
+                  <h4>⏱️ Timing Natural</h4>
+                  <p>Duraciones de 200-500ms con easing curves realistas</p>
+                </div>
+                <div class="principle-item">
+                  <h4>♿ Accesibilidad</h4>
+                  <p>Respeto por prefers-reduced-motion del usuario</p>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Implementación</h5>
+              <p>CSS keyframes, Intersection Observer y requestAnimationFrame.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optimización y Bundle -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('optimization')">
+            <div class="level-info">
+              <span class="level-number">3.7</span>
+              <h4 class="level-title">Optimización y Bundling</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Performance</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="optimization">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Optimizar para producción minimizando archivos y maximizando velocidad.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Técnicas Aplicadas</h5>
+              <div class="optimization-grid">
+                <div class="optimization-item">
+                  <h4>📦 Minificación</h4>
+                  <p>CSS y JavaScript comprimidos, eliminación de código no usado.</p>
+                </div>
+                <div class="optimization-item">
+                  <h4>🖼️ Imágenes</h4>
+                  <p>WebP, AVIF, SVG optimizados y lazy loading implementado.</p>
+                </div>
+                <div class="optimization-item">
+                  <h4>⚡ Critical CSS</h4>
+                  <p>Estilos críticos inline, carga diferida del resto.</p>
+                </div>
+                <div class="optimization-item">
+                  <h4>📊 Métricas</h4>
+                  <div class="metrics-grid">
+                    <div class="metric">
+                      <span class="metric-value">95</span>
+                      <span class="metric-label">Performance</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-value">1.2s</span>
+                      <span class="metric-label">FCP</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-value">2.1s</span>
+                      <span class="metric-label">LCP</span>
+                    </div>
+                    <div class="metric">
+                      <span class="metric-value">0.05</span>
+                      <span class="metric-label">CLS</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Herramientas</h5>
+              <p>Lighthouse, PageSpeed Insights, CSSnano y UglifyJS.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Control de Versiones -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('version-control')">
+            <div class="level-info">
+              <span class="level-number">3.8</span>
+              <h4 class="level-title">Control de Versiones</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Workflow</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="version-control">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Flujo de trabajo eficiente con Git para control de versiones.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Estrategia Implementada</h5>
+              <div class="git-benefits">
+                <div class="benefits-grid">
+                  <div class="benefit-item">
+                    <h4>📝 Conventional Commits</h4>
+                    <p>Mensajes estandarizados: feat, fix, docs, style, refactor</p>
+                  </div>
+                  <div class="benefit-item">
+                    <h4>🔀 Branches Organizados</h4>
+                    <p>main → develop → feature branches → pull requests</p>
+                  </div>
+                  <div class="benefit-item">
+                    <h4>🛡️ Código Protegido</h4>
+                    <p>Branch main protegido, solo merges via review</p>
+                  </div>
+                  <div class="benefit-item">
+                    <h4>👥 Colaboración</h4>
+                    <p>Preparado para trabajo en equipo futuro</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Herramientas</h5>
+              <p>GitHub, GitHub Actions, Semantic Versioning y workflows automatizados.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fase 4: Testing & Deploy -->
+      <div class="levels-section" id="phase-deploy">
+        <h3 class="levels-section-title">
+          <span class="level-badge expert">FASE 4</span>
+          Testing, Optimización y Deploy
+        </h3>
+        
+        <!-- Performance -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('performance')">
+            <div class="level-info">
+              <span class="level-number">4.1</span>
+              <h4 class="level-title">Optimización de Performance</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Crítico</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="performance">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Optimizar el rendimiento para lograr tiempos de carga rápidos y una experiencia fluida en todos los dispositivos.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Técnicas Implementadas</h5>
+              <div class="tech-improvements">
+                <div class="improvement-item">
+                  <h4>🖼️ Optimización de Imágenes</h4>
+                  <p>Compresión WebP, lazy loading y responsive images con srcset para diferentes densidades.</p>
+                </div>
+                <div class="improvement-item">
+                  <h4>📦 Minificación</h4>
+                  <p>CSS y JavaScript minificados, eliminación de código no utilizado y compresión GZIP.</p>
+                </div>
+                <div class="improvement-item">
+                  <h4>⚡ Critical Path</h4>
+                  <p>CSS crítico inline, preload de recursos importantes y carga asíncrona de scripts.</p>
+                </div>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Métricas Logradas</h5>
+              <p>First Contentful Paint < 1.5s, Largest Contentful Paint < 2.5s, Cumulative Layout Shift < 0.1</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accesibilidad -->
+        <div class="level-detail">
+          <div class="level-detail-header" onclick="toggleLevel('accessibility')">
+            <div class="level-info">
+              <span class="level-number">4.2</span>
+              <h4 class="level-title">Accesibilidad WCAG 2.1</h4>
+            </div>
+            <div class="level-meta">
+              <span class="difficulty">Inclusivo</span>
+              <span class="toggle-icon">▶</span>
+            </div>
+          </div>
+          <div class="level-content" id="accessibility">
+            <div class="level-objective">
+              <h5>🎯 Objetivo</h5>
+              <p>Garantizar que el sitio sea completamente accesible para usuarios con diferentes capacidades y tecnologías asistivas.</p>
+            </div>
+            <div class="level-solution">
+              <h5>💡 Implementaciones</h5>
+              <div class="code-block">
+                <div class="code-header">
+                  <span>Accessibility Features</span>
+                  <button class="copy-btn" onclick="copyToClipboard('accessibility-code')">📋</button>
+                </div>
+                <pre><code><!-- Navegación por teclado -->
+&lt;nav aria-label="Navegación principal"&gt;
+&lt;button aria-expanded="false" aria-controls="nav-menu"&gt;
+
+<!-- Skip links para lectores de pantalla -->
+&lt;a href="#main-content" class="skip-link"&gt;Ir al contenido principal&lt;/a&gt;
+
+<!-- Contraste adecuado -->
+:root {
+  --text-primary: #1E293B; /* Ratio 7:1 */
+  --bg-primary: #FFFFFF;
+}
+
+<!-- Focus management -->
+.focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}</code></pre>
+              </div>
+            </div>
+            <div class="level-explanation">
+              <h5>📚 Estándares Cumplidos</h5>
+              <p>WCAG 2.1 AA, navegación por teclado completa, alto contraste, labels descriptivos y estructura semántica.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lecciones Aprendidas -->
+      <div class="levels-section" id="lessons-learned">
+        <h3 class="levels-section-title">
+          <span class="level-badge master">INSIGHTS</span>
+          Lecciones Aprendidas y Mejores Prácticas
+        </h3>
+        
+        <div class="lesson-grid">
+          <div class="lesson-card">
+            <h3>🎯 Planificación es Clave</h3>
+            <p>Invertir tiempo en la planificación inicial y el wireframing ahorra horas de refactorización posterior.</p>
+          </div>
+          <div class="lesson-card">
+            <h3>📱 Mobile First</h3>
+            <p>Diseñar primero para móvil y luego escalar resulta en mejores experiencias y código más limpio.</p>
+          </div>
+          <div class="lesson-card">
+            <h3>⚡ Performance Matters</h3>
+            <p>Los usuarios abandonan sitios lentos. Optimización desde el inicio, no como una ocurrencia tardía.</p>
+          </div>
+        </div>
+
+        <div class="conclusion-box">
+          <h3>🎓 Conclusión del Proyecto</h3>
+          <p>Este proyecto ha sido una experiencia increíblemente enriquecedora que me ha permitido aplicar y expandir mis conocimientos en desarrollo web frontend. No solo he creado una presencia web profesional, sino que también he documentado todo el proceso para servir como referencia futura.</p>
+          <p>El portfolio representa no solo mis habilidades actuales, sino también mi compromiso con el aprendizaje continuo y la mejora constante. Cada línea de código ha sido escrita  pensando en la experiencia del usuario, la accesibilidad y el rendimiento.</p>
+          <p><strong>Este proyecto continuará evolucionando</strong> a medida que adquiera nuevas habilidades y explore nuevas tecnologías. Es un reflejo vivo de mi crecimiento profesional en el campo de la tecnología.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 Jorge Herrera. Todos los derechos reservados.</p>
+      <div class="footer-links">
+        <a href="../proyectos.html">Volver a Proyectos</a>
+        <a href="../../index.html">Inicio</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../assets/scripts/menu.js" defer></script>
+  <script src="../../assets/scripts/theme-switcher.js" defer></script>
+  <script src="mi-pagina-web-effects.js" defer></script>
+</body>
+</html>

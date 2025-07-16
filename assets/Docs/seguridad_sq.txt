@@ -1,0 +1,163 @@
+Análisis de Seguridad con Consultas SQL
+=====================================
+
+¡Bienvenidos a mi proyecto!
+
+Este proyecto utiliza SQL, un lenguaje para gestionar bases de datos, para buscar actividades sospechosas en una organización, como intentos de inicio de sesión fallidos o accesos desde lugares inusuales. He creado una tabla con usuarios inventados para mostrar cómo las consultas SQL filtran datos y encuentran problemas de seguridad. A continuación, explico las consultas, muestro ejemplos de resultados, describo un diagrama de red y comparto un enlace a los scripts.
+
+---
+
+1. ¿Qué hace este proyecto?
+---------------------------
+Imagina que una empresa guarda registros de quién intenta entrar a sus sistemas y quiénes son sus empleados. Yo usé consultas SQL para analizar estos datos y encontrar posibles problemas, como alguien intentando entrar a horas extrañas o desde otro país. Esto ayuda a proteger la información de la empresa.
+
+---
+
+2. Tabla de ejemplo con usuarios inventados
+-----------------------------------------
+Para que entiendas cómo funcionan las consultas, aquí tienes dos tablas con datos inventados:
+
+### Tabla log_in_attempts (Intentos de inicio de sesión)
+Esta tabla registra quién intentó entrar al sistema, cuándo, desde dónde y si lo logró.
+
+Usuario    | Fecha       | Hora    | País | Éxito
+-----------|-------------|---------|------|-------
+jdoe       | 2022-05-08  | 14:00   | MEX  | Sí
+jdoe       | 2022-05-08  | 20:15   | MEX  | No
+asmith     | 2022-05-09  | 03:00   | USA  | No
+mlopez     | 2022-05-09  | 09:45   | MEX  | Sí
+hacker1    | 2022-05-09  | 02:30   | RUS  | No
+csanchez   | 2022-05-10  | 16:20   | MEX  | Sí
+
+### Tabla employees (Empleados)
+Esta tabla muestra quiénes trabajan en la empresa, en qué departamento y en qué oficina.
+
+Nombre          | Departamento         | Oficina
+---------------|---------------------|--------
+Ana García     | Marketing           | East-101
+Luis Pérez     | Marketing           | East-203
+María López    | Finance             | West-301
+Juan Gómez     | Sales               | East-105
+Sofía Ramírez  | Technology of Information | West-102
+Carlos Ruiz    | Finance             | West-304
+
+Estas tablas nos ayudarán a ver cómo las consultas SQL filtran datos para encontrar lo que queremos.
+
+---
+
+3. Consultas SQL que utilicé
+---------------------------
+Aquí están las preguntas que hice a la base de datos con SQL, usando los datos de arriba para mostrar cómo se filtran los usuarios.
+
+### a) Intentos de inicio de sesión fallidos después de las 6:00 p.m.
+**Pregunta**: ¿Quién intentó entrar al sistema después del horario laboral (6:00 p.m.) y falló?
+**Consulta**:
+SELECT * FROM log_in_attempts WHERE login_time > '18:00' AND success = FALSE;
+**Explicación**: Bus–
+
+System: ca intentos de inicio de sesión después de las 6:00 p.m. que no funcionaron (por ejemplo, contraseña incorrecta).
+**Ejemplo de resultado (filtrado de la tabla log_in_attempts)**:
+Usuario    | Fecha       | Hora    | País | Éxito
+-----------|-------------|---------|------|-------
+jdoe       | 2022-05-08  | 20:15   | MEX  | No
+
+### b) Intentos de inicio de sesión en fechas específicas
+**Pregunta**: ¿Qué intentos de inicio de sesión hubo el 8 y 9 de mayo de 2022?
+**Consulta**:
+SELECT * FROM log_in_attempts WHERE login_date = '2022-05-09' OR login_date = '2022-05-08';
+**Explicación**: Busca todos los intentos de inicio de sesión en esos dos días, ya sea que hayan tenido éxito o no.
+**Ejemplo de resultado (filtrado de la tabla log_in_attempts)**:
+Usuario    | Fecha       | Hora    | País | Éxito
+-----------|-------------|---------|------|-------
+jdoe       | 2022-05-08  | 14:00   | MEX  | Sí
+jdoe       | 2022-05-08  | 20:15   | MEX  | No
+asmith     | 2022-05-09  | 03:00   | USA  | No
+mlopez     | 2022-05-09  | 09:45   | MEX  | Sí
+hacker1    | 2022-05-09  | 02:30   | RUS  | No
+
+### c) Intentos de inicio de sesión fuera de México
+**Pregunta**: ¿Hubo intentos de inicio de sesión desde fuera de México?
+**Consulta**:
+SELECT * FROM log_in_attempts WHERE NOT country LIKE 'MEX%';
+**Explicación**: Busca intentos de inicio de sesión desde países que no empiecen con "MEX".
+**Ejemplo de resultado (filtrado de la tabla log_in_attempts)**:
+Usuario    | Fecha       | Hora    | País | Éxito
+-----------|-------------|---------|------|-------
+asmith     | 2022-05-09  | 03:00   | USA  | No
+hacker1    | 2022-05-09  | 02:30   | RUS  | No
+
+### d) Empleados en el departamento de Marketing
+**Pregunta**: ¿Quiénes trabajan en Marketing y están en el edificio Este?
+**Consulta**:
+SELECT * FROM employees WHERE department = 'Marketing' AND office LIKE 'East%';
+**Explicación**: Busca empleados del departamento de Marketing que trabajen en oficinas que empiecen con "East".
+**Ejemplo de resultado (filtrado de la tabla employees)**:
+Nombre      | Departamento | Oficina
+------------|-------------|--------
+Ana García  | Marketing   | East-101
+Luis Pérez  | Marketing   | East-203
+
+### e) Empleados en Finanzas o Ventas
+**Pregunta**: ¿Quiénes trabajan en los departamentos de Finanzas o Ventas?
+**Consulta**:
+SELECT * FROM employees WHERE department = 'Finance' OR department = 'Sales';
+**Explicación**: Busca empleados que estén en Finanzas o en Ventas.
+**Ejemplo de resultado (filtrado de la tabla employees)**:
+Nombre      | Departamento | Oficina
+------------|-------------|--------
+María López | Finance     | West-301
+Juan Gómez  | Sales       | East-105
+Carlos Ruiz | Finance     | West-304
+
+### f) Empleados que no son de Tecnología
+**Pregunta**: ¿Quiénes no trabajan en el departamento de Tecnología?
+**Consulta**:
+SELECT * FROM employees WHERE NOT department = 'Technology of Information';
+**Explicación**: Busca empleados que no estén en el departamento de TI.
+**Ejemplo de resultado (filtrado de la tabla employees)**:
+Nombre      | Departamento | Oficina
+------------|-------------|--------
+Ana García  | Marketing   | East-101
+Luis Pérez  | Marketing   | East-203
+María López | Finance     | West-301
+Juan Gómez  | Sales       | East-105
+Carlos Ruiz | Finance     | West-304
+
+---
+
+4. Diagrama de red: Cómo ocurre un ataque y cómo detenerlo
+--------------------------------------------------------
+Imagina un ataque donde alguien intenta entrar al sistema de la empresa sin permiso. Aquí está cómo se ve el flujo y cómo detenerlo:
+
+**Flujo del ataque**:
+1. El atacante intenta entrar desde internet (por ejemplo, desde Rusia o USA).
+2. Pasa por el firewall (una barrera de seguridad).
+3. Llega al servidor de autenticación, donde introduce un usuario (como "hacker1") y contraseña.
+4. Intenta acceder a la base de datos con los registros.
+
+**Puntos de mitigación**:
+- **Firewall**: Bloquea direcciones IP sospechosas (por ejemplo, de países como RUS o USA si no son esperados).
+- **Monitoreo de logs**: Registra intentos como los de "asmith" o "hacker1" y alerta si hay fallos repetidos o accesos a las 3:00 a.m.
+- **Autenticación multifactor (MFA)**: Pide un segundo paso, como un código en el teléfono, para verificar la identidad.
+
+---
+
+5. Recursos y cómo seguir aprendiendo
+------------------------------------
+Todos los scripts SQL y datos de ejemplo están en mi repositorio de GitHub:
+https://github.com/tu-usuario/seguridad-sql-proyecto
+
+En el repositorio encontrarás:
+- Archivos SQL con las consultas.
+- Datos de ejemplo (como las tablas de arriba) para probarlas.
+- Un archivo README con instrucciones para configurar una base de datos con SQLite o MySQL y ejecutar las consultas.
+
+Para probar las consultas, usa un programa como MySQL o SQLite. ¡Explora el código y aprende cómo proteger datos con SQL!
+
+---
+
+6. Conclusión
+-------------
+Este proyecto muestra cómo SQL puede ayudarte a encontrar problemas de seguridad, como los intentos fallidos de "hacker1" desde Rusia o de "asmith" a las 3:00 a.m. Con las tablas de usuarios, puedes ver cómo las consultas filtran datos para encontrar lo importante. Espero que te inspire a aprender más sobre SQL y ciberseguridad. ¡Contáctame en GitHub si tienes preguntas!
+
+Creado por [Tu Nombre], 2025

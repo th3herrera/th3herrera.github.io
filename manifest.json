@@ -1,0 +1,43 @@
+{
+  "name": "th3herrera - Jorge Herrera Portfolio",
+  "short_name": "th3herrera",
+  "description": "Portfolio profesional de Jorge Herrera - Especialista en Ciberseguridad y Desarrollo Técnico ASIR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#E6AD22",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "technology", "cybersecurity"],
+  "shortcuts": [
+    {
+      "name": "Proyectos",
+      "short_name": "Proyectos",
+      "description": "Ver mis proyectos de ciberseguridad",
+      "url": "/pages/proyectos.html",
+      "icons": [{ "src": "assets/images/logo.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Sobre Mí",
+      "short_name": "About",
+      "description": "Conoce mi trayectoria profesional",
+      "url": "/pages/sobre-mi.html",
+      "icons": [{ "src": "assets/images/logo.png", "sizes": "96x96" }]
+    }
+  ]
+}

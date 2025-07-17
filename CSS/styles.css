@@ -3138,9 +3138,9 @@ html[data-theme="dark"] #contacto .contact-card.primary {
               rgba(16, 185, 129, 0.12));
   border: 3px solid rgba(34, 197, 94, 0.5);
   box-shadow: 
-    0 0 80px rgba(34, 197, 94, 0.25),
-    0 25px 75px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(34, 197, 94, 0.2);
+    0 0 120px rgba(34, 197, 94, 0.25),
+    0 50px 120px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(34, 197, 94, 0.3);
 }
 
 /* Efectos hover espectaculares */
@@ -3466,5 +3466,193 @@ html[data-theme="dark"] #contacto .contact-card.primary .contact-link:hover {
     padding: 1rem 2rem;
     font-size: 0.95rem;
     min-width: 160px;
+  }
+}
+
+/* ===================== OPTIMIZACIONES ADICIONALES PARA MÓVILES E IPHONE ===================== */
+@media screen and (max-width: 768px) {
+  /* Base móvil */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+  }
+  
+  /* Contenedor principal */
+  body {
+    font-size: 16px; /* Prevenir zoom automático en iOS */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  /* Inputs y forms optimizados para móvil */
+  input, textarea, select {
+    font-size: 16px; /* Prevenir zoom en iOS */
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  
+  /* Navegación móvil mejorada */
+  .nav-brand {
+    flex: 1;
+  }
+  
+  .theme-btn {
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+  }
+  
+  /* Cards con mejor interacción */
+  .project-card,
+  .archive-card,
+  .resource-card,
+  .about-card,
+  .contact-card {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  
+  .project-card:hover,
+  .archive-card:hover,
+  .resource-card:hover,
+  .about-card:hover,
+  .contact-card:hover {
+    transform: translateY(-2px);
+  }
+  
+  /* Badges responsivos */
+  .project-badge,
+  .archive-badge,
+  .resource-badge,
+  .about-badge {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  /* Stats móviles */
+  .project-stats,
+  .archive-stats,
+  .about-stats {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .project-stats .stat,
+  .archive-stats .stat,
+  .about-stats .stat {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.6rem;
+  }
+  
+  /* Links optimizados para touch */
+  .contact-link,
+  .resource-link,
+  .cta-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.2s ease;
+  }
+  
+  .contact-link:active,
+  .resource-link:active,
+  .cta-button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Iconos optimizados */
+  .project-icon,
+  .archive-icon,
+  .resource-icon,
+  .about-icon,
+  .contact-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* Animaciones optimizadas para móvil */
+  .animate-fadein {
+    animation-duration: 0.8s;
+  }
+  
+  /* Scroll suave */
+  html {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Optimizaciones específicas para iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  /* Prevenir comportamientos no deseados */
+  * {
+    -webkit-touch-callout: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Permitir selección en textos importantes */
+  p, span, h1, h2, h3, h4, h5, h6, .hero-description {
+    -webkit-user-select: text;
+    user-select: text;
+  }
+  
+  /* Mejorar rendimiento de animaciones */
+  .project-card,
+  .archive-card,
+  .resource-card,
+  .about-card,
+  .contact-card {
+    will-change: transform;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Optimizar scroll en iOS */
+  body {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: none;
+  }
+  
+  /* Safe area adjustments */
+  .section-content {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Pantallas pequeñas adicionales */
+@media screen and (max-width: 320px) {
+  .hero-content h1 {
+    font-size: 1.75rem;
+    line-height: 1.1;
+  }
+  
+  .welcome {
+    font-size: 0.9rem;
+  }
+  
+  .hero-description {
+    font-size: 0.85rem;
+  }
+  
+  .section-content {
+    padding: 2rem 0.5rem;
+  }
+  
+  .project-card,
+  .archive-card,
+  .resource-card,
+  .about-card,
+  .contact-card {
+    padding: 1rem;
+    border-radius: 10px;
   }
 }

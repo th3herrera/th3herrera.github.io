@@ -19,6 +19,42 @@
   <link rel="alternate icon" href="../assets/images/logo-light.png" type="image/png">
   <link rel="preload" href="../assets/images/logo.svg" as="image">
   <link rel="preload" href="../assets/images/logo-dark.svg" as="image">
+  
+  <!-- Optimizaciones móviles premium -->
+  <style>
+    @media screen and (max-width: 768px) {
+      /* Navegación móvil mejorada */
+      nav {
+        background: rgba(30, 58, 138, 0.95) !important;
+        border-bottom: 1px solid rgba(230, 173, 34, 0.2) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        box-shadow: 0 2px 20px rgba(0,0,0,0.2) !important;
+      }
+      
+      [data-theme="dark"] nav {
+        background: rgba(15, 23, 42, 0.95) !important;
+        border-bottom: 1px solid rgba(230, 173, 34, 0.2) !important;
+      }
+      
+      /* Asegurar que el texto se vea bien en fondo azul */
+      nav .nav-brand .logo {
+        color: white !important;
+      }
+      
+      nav .theme-btn {
+        color: white !important;
+      }
+      
+      nav .theme-btn:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+      }
+      
+      .hamburger span {
+        background: #E6AD22 !important;
+      }
+    }
+  </style>
 </head>
 <body class="projects-page">
   <nav>

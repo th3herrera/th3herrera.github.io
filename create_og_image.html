@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Imagen OG para th3herrera</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 50%, #1e293b 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .og-card {
+            width: 1200px;
+            height: 630px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #312e81 50%, #1e293b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .og-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(230, 173, 34, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .main-title {
+            font-size: 72px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            z-index: 2;
+            position: relative;
+            background: linear-gradient(45deg, #E6AD22, #FbbF24);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 36px;
+            font-weight: 500;
+            margin-bottom: 30px;
+            z-index: 2;
+            position: relative;
+            opacity: 0.9;
+        }
+        
+        .description {
+            font-size: 24px;
+            font-weight: 400;
+            max-width: 800px;
+            line-height: 1.4;
+            z-index: 2;
+            position: relative;
+            opacity: 0.8;
+        }
+        
+        .tech-badges {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            z-index: 2;
+            position: relative;
+        }
+        
+        .tech-badge {
+            background: rgba(230, 173, 34, 0.2);
+            border: 1px solid rgba(230, 173, 34, 0.3);
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        
+        .corner-accent {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            font-size: 18px;
+            opacity: 0.6;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="og-card">
+        <div class="corner-accent">th3herrera.github.io</div>
+        
+        <!-- Logo SVG -->
+        <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 298 298">
+            <style>
+                .cls-1,.cls-2{fill:#E6AD22;}
+                .cls-1{stroke:#E6AD22;stroke-miterlimit:10;}
+            </style>
+            <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+            <path class="cls-2" d="M334.58,296.85c21.1,28.87,37.58,59.74,50.79,91.64a0,0,0,0,1-.07.05q-28.85-34.64-58.54-67.89L301,399l-49.53,0,40.76-116.2q-14-15-28.21-29.77a0,0,0,0,1,0,0h0L216,399h-.5l-49,0h0l0-.07a2.17,2.17,0,0,0,0-.26v-.17c0-.4,0-.79,0-1.18A57.66,57.66,0,0,0,166,391a65.26,65.26,0,0,0-64.76-57.22H101v-49h.25a114.08,114.08,0,0,1,89.94,43.78L229.85,218.3Q206.68,195.23,183,173a443.11,443.11,0,0,1,52.36,29.59L271,101h43L271.7,229.62l0,.06a0,0,0,0,1,.07,0,380.6,380.6,0,0,1,29.48,27.49L356,101h43Z" transform="translate(-101 -101)"/>
+            <line class="cls-1" x1="114.5" y1="298" x2="114.5" y2="297.96"/>
+            <line class="cls-1" x1="0.47" y1="55.62" x2="0.46" y2="55.62"/>
+            <path class="cls-1" d="M159.82,101.08" transform="translate(-101 -101)"/>
+            <path class="cls-2" d="M211,156l-42.42,7a6.77,6.77,0,0,0-5.59,5.59L156,211l-7-42.42a6.77,6.77,0,0,0-5.59-5.59L101,156l42.42-7a6.77,6.77,0,0,0,5.59-5.59L156,101l7,42.42a6.77,6.77,0,0,0,5.59,5.59Z" transform="translate(-101 -101)"/>
+        </svg>
+        
+        <h1 class="main-title">Jorge Herrera</h1>
+        <h2 class="subtitle">th3herrera</h2>
+        <p class="description">Apasionado principiante en ciberseguridad y ethical hacking. Documentando mi journey de aprendizaje en ASIR.</p>
+        
+        <div class="tech-badges">
+            <span class="tech-badge">Ciberseguridad</span>
+            <span class="tech-badge">Ethical Hacking</span>
+            <span class="tech-badge">Linux</span>
+            <span class="tech-badge">Python</span>
+        </div>
+    </div>
+    
+    <script>
+        // Instrucciones para capturar
+        console.log("📸 INSTRUCCIONES PARA CAPTURAR:");
+        console.log("1. Presiona F12 para abrir DevTools");
+        console.log("2. Ve a la pestaña 'Console'");
+        console.log("3. Ejecuta: document.querySelector('.og-card').style.transform = 'scale(1)'");
+        console.log("4. Presiona F12 de nuevo para cerrar DevTools");
+        console.log("5. Haz clic derecho en la tarjeta → 'Inspeccionar elemento'");
+        console.log("6. Clic derecho en el elemento .og-card → 'Capture node screenshot'");
+        console.log("7. Guarda como: og-image.png (1200x630px)");
+    </script>
+</body>
+</html>
